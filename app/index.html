@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>The Great War Guide</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
 
-        <nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Great War Guide</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
 
+<body>
+
+    <nav>
+
+        <div class="container">
             <ul class="navigation">
                 <li>
                     <a href="/" data-page-id="1">Home</a>
@@ -25,28 +28,78 @@
                     <a href="/contact" data-page-id="4">Contact</a>
                 </li>
             </ul>
-
-        </nav>
-
-        <div class="container">
-            <h1>Heading</h1>
-            <p>This is a heading</p>
-            <button id="clicker">Click Me</button>
-            <div id="content"></div>
         </div>
 
-        <footer>
+    </nav>
 
-            <p>Interactive Great War Guide - Chris Connor &copy; 2018</p>
+    <div class="container">
+        <h1>Heading</h1>
+        <p>This is a heading</p>
+        <button id="clicker">Click Me</button>
+        <div id="content"></div>
 
-        </footer>
+        <div id="animalList"></div>
+    </div>
 
-        <script src="js/navigation.js"></script>
-        <script src="js/app.js"></script>
-        <script>
-            // INITIALISE NAVIGATION
+    <script id="animalTemplate" type="text/x-handlebars-template">
+            <ul>
+              {{#pages}}
+                <li class="animal">ID IS {{id}} {{title}} says {{contact}}</li>
+              {{/pages}}
+            </ul>
+          </script>
+
+    <footer>
+
+        <p>Interactive Great War Guide - Chris Connor &copy; 2018</p>
+
+    </footer>
+    <script src="js/handlebars-v4.0.12.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // INITIALISE NAVIGATION
         navigation.init();
-        </script>
 
-    </body>
+        // sets variable source to the animalTemplate id in index.html
+        var source = document.getElementById("animalTemplate").innerHTML;
+
+        // Handlebars compiles the above source into a template
+        var template = Handlebars.compile(source);
+
+        fetch('http://localhost:9999')
+            .then((result) => {
+                return result.json();
+            })
+            .then((data) => {
+
+                console.log(data);
+
+                data.pages.forEach((x) => {
+                    console.log(x.title);
+                });
+
+                // data is passed to above template
+                var output = template(data);
+
+                // HTML element with id "animalList" is set to the output above
+                document.getElementById("animalList").innerHTML = output;
+
+            });
+
+        // data
+        var data = {
+            animals: [
+                { type: "Dog", sound: "woof" },
+                { type: "Cat", sound: "meow" },
+                { type: "Cow", sound: "moo" }
+            ]
+        };
+
+
+
+    </script>
+
+</body>
+
 </html>
