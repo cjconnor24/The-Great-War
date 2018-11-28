@@ -1,0 +1,32 @@
+{
+  "name": "client-side-coursework",
+  "version": "1.0.0",
+  "description": "Chris Connor Client Side Coursework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjconnor24/client-side-coursework.git"
+  },
+  "author": "Chris Connor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjconnor24/client-side-coursework/issues"
+  },
+  "homepage": "https://github.com/cjconnor24/client-side-coursework#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-connect-php": "^1.0.3",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.1",
+    "gulp-useref": "^3.1.6",
+    "run-sequence": "^2.2.1"
+  }
+}
