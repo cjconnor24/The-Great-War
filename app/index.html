@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Great War Guide</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -14,6 +16,7 @@
     <nav>
 
         <div class="container">
+
             <ul class="navigation">
                 <li>
                     <a href="/" data-page-id="1">Home</a>
@@ -28,6 +31,12 @@
                     <a href="/contact" data-page-id="4">Contact</a>
                 </li>
             </ul>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-box">
+            </div>
+
         </div>
 
     </nav>
@@ -41,12 +50,17 @@
         <div id="animalList"></div>
     </div>
 
+
+
     <script id="animalTemplate" type="text/x-handlebars-template">
-            <ul>
+        <div class="page-row">
               {{#pages}}
-                <li class="animal">ID IS {{id}} {{title}} says {{contact}}</li>
+              <div class="page-block">
+                    <h1><a href="/{{slug}}">{{title}}</a></h1>
+                    <p>{{content}}</p>
+                </div>
               {{/pages}}
-            </ul>
+            </div>
           </script>
 
     <footer>
