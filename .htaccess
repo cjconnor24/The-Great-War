@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^(.*)$ /index.html?url=$1 [L]
