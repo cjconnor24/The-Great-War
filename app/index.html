@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The Great War Guide</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>The Great War Guide</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+
+        <nav>
+
+            <ul class="navigation">
+                <li>
+                    <a href="/" data-page-id="1">Home</a>
+                </li>
+                <li>
+                    <a href="/about" data-page-id="2">About</a>
+                </li>
+                <li>
+                    <a href="/portfolio" data-page-id="3">Portfolio</a>
+                </li>
+                <li>
+                    <a href="/contact" data-page-id="4">Contact</a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <div class="container">
+            <h1>Heading</h1>
+            <p>This is a heading</p>
+            <button id="clicker">Click Me</button>
+            <div id="content"></div>
+        </div>
+
+        <footer>
+
+            <p>Interactive Great War Guide - Chris Connor &copy; 2018</p>
+
+        </footer>
+
+        <script src="js/navigation.js"></script>
+        <script src="js/app.js"></script>
+        <script>
+            // INITIALISE NAVIGATION
+        navigation.init();
+        </script>
+
+    </body>
 </html>
