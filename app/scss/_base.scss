@@ -45,14 +45,17 @@ nav {
 // 
 .page-row {
     display: flex;
-    flex-direction: row;
-    width: 100%;
+    justify-content: space-around; // width:100%;background: #F00;
+    flex-wrap: wrap;
     .page-block {
+        background: rgba(0, 0, 0, 0.4);
         padding: 2em;
-        flex-grow: 1;
+        border-radius: 10px;
+        width: 48%;
+        margin: 50px 0 2em 0;
         transition: 0.25s;
         &:hover {
-            background: #CCC;
+            background: rgba(0, 0, 0, 0.6) !important;
         }
     }
 }
@@ -103,12 +106,10 @@ nav {
 .video-element {
     margin: 0 0 1em 1em;
     float: right;
-
     p {
-        color:$highlightcolor;
-        font-family:Oswald, sans-serif;
+        color: $highlightcolor;
+        font-family: Oswald, sans-serif;
         text-transform: italic;
         text-align: center;
     }
-
 }

@@ -41,32 +41,38 @@
 
     </nav>
 
-    <div class="container">
+    <!-- <div class="container"> -->
 
 
-        <div style="width:60%;margin:0 auto;background: rgba(0,0,0,0.4);padding:2em;border-radius:10px;">
+        <!-- EXAMPLE PAGE ROW -->
+    <div class="page-row">
 
-            
+        <div class="page-block">
+
+
 
             <h1>Here is some dummy text regarding the great war</h1>
             <p class="sub-heading">This is a subheading</p>
             <p>
-                <div class="video-element">
-                    <video width="320" height="240" autoplay>
-                            <source src="/video/ww1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <p>Caption for the video</p>
-                    </div>
+                <!-- <div class="video-element">
+        <video width="320" height="240" autoplay>
+        <source src="/video/ww1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <p>Caption for the video</p>
+        </div> -->
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quos officia earum, dignissimos, id
-                provident, quaerat delectus culpa iure repellendus ullam. Corrupti omnis ipsum libero. Corporis commodi
+                provident, quaerat delectus culpa iure repellendus ullam. Corrupti omnis ipsum libero. Corporis
+                commodi
                 sit odit qui.
                 Soluta, enim accusantium inventore, magnam odio fugiat unde itaque animi laboriosam, corporis
-                reprehenderit molestiae placeat at perferendis non? Consequatur pariatur sit esse aperiam, laboriosam
+                reprehenderit molestiae placeat at perferendis non? Consequatur pariatur sit esse aperiam,
+                laboriosam
                 minima at! Ratione ipsa alias officia.
                 Adipisci magnam dolorem maxime repellat, illum, a similique voluptates incidunt animi quidem
                 voluptatibus ab. Vero rem deleniti ratione fugiat minima eligendi aliquam esse culpa, quos aperiam
-                maiores quaerat nisi. Laboriosam.</p>
+                maiores quaerat nisi. Laboriosam.
+            </p>
 
             <div style="margin:2em 0 0 0;display:block;">
                 <button id="clicker">Click Me</button>
@@ -75,24 +81,45 @@
 
         </div>
 
-
-        <div id="content"></div>
-
-        <div id="animalList"></div>
     </div>
 
+    <div id="content"></div>
+
+    <div id="animalList"></div>
+
+    <!-- </div> -->
 
 
-    <script id="animalTemplate" type="text/x-handlebars-template">
+
+    <script id="pageTemplate" type="text/x-handlebars-template">
         <div class="page-row">
               {{#pages}}
-              <div class="page-block">
-                    <h1><a href="/{{slug}}">{{title}}</a></h1>
-                    <p>{{content}}</p>
+              <div style="background: rgba(0,0,0,0.4);padding:1em 2em;border-radius:10px;">
+
+
+
+                    <h1>{{title}}</h1>
+                    <p class="sub-heading">{{slug}}</p>
+                    <p>
+                        <div class="video-element">
+                            <!-- <video width="320" height="240" autoplay>
+                                <source src="/video/ww1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> -->
+                            <p>{{title}}</p>
+                        </div>
+                        {{content}}
+                    </p>
+        
+                    <div style="margin:2em 0 0 0;display:block;">
+                        <button id="clicker">Click Me</button>
+                        <button class="button primary" id="clicker">Click Me</button>
+                    </div>
+        
                 </div>
               {{/pages}}
-            </div>
-          </script>
+        </div>
+    </script>
 
     <footer>
 
@@ -106,43 +133,27 @@
         // INITIALISE NAVIGATION
         navigation.init();
 
-        // sets variable source to the animalTemplate id in index.html
-        var source = document.getElementById("animalTemplate").innerHTML;
+        // // sets variable source to the pageTemplate id in index.html
+        // var source = document.getElementById("pageTemplate").innerHTML;
 
-        // Handlebars compiles the above source into a template
-        var template = Handlebars.compile(source);
+        // // Handlebars compiles the above source into a template
+        // var template = Handlebars.compile(source);
 
-        fetch('http://localhost:9999')
-            .then((result) => {
-                return result.json();
-            })
-            .then((data) => {
+        // fetch(`http://localhost:9999/pages.php?count=${Math.floor(Math.random() * 10)}`)
+        //     .then((result) => {
 
-                console.log(data);
+        //         return result.json();
 
-                data.pages.forEach((x) => {
-                    console.log(x.title);
-                });
+        //     })
+        //     .then((data) => {
 
-                // data is passed to above template
-                var output = template(data);
+        //         // data is passed to above template
+        //         var output = template(data);
 
-                // HTML element with id "animalList" is set to the output above
-                document.getElementById("animalList").innerHTML = output;
+        //         // HTML element with id "animalList" is set to the output above
+        //         document.getElementById("animalList").innerHTML = output;
 
-            });
-
-        // data
-        var data = {
-            animals: [
-                { type: "Dog", sound: "woof" },
-                { type: "Cat", sound: "meow" },
-                { type: "Cow", sound: "moo" }
-            ]
-        };
-
-
-
+        //     });
     </script>
 
 </body>
