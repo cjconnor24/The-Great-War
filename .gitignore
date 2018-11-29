@@ -1,7 +1,7 @@
 /dist/
 /app/css/
 /app/video/
-
+/api/vendor/
 # Logs
 logs
 *.log
