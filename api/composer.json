@@ -1,0 +1,14 @@
+{
+    "name": "chrisconnor/client-side-api",
+    "description": "simple API for client side coursework",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Chris Connor",
+            "email": "chris@chrisconnor.co.uk"
+        }
+    ],
+    "require": {
+        "fzaninotto/faker": "^1.8"
+    }
+}
