@@ -17,6 +17,13 @@
 
         <div class="container">
 
+            <!-- TODO: Fix responsive menu -->
+            <!-- <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div> -->
+
             <ul class="navigation">
                 <li>
                     <a href="/" data-page-id="1">Home</a>
@@ -44,7 +51,7 @@
     <!-- <div class="container"> -->
 
 
-        <!-- EXAMPLE PAGE ROW -->
+    <!-- EXAMPLE PAGE ROW -->
     <div class="page-row">
 
         <div class="page-block">
@@ -54,13 +61,13 @@
             <h1>Here is some dummy text regarding the great war</h1>
             <p class="sub-heading">This is a subheading</p>
             <p>
-                <!-- <div class="video-element">
-        <video width="320" height="240" autoplay>
-        <source src="/video/ww1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-        </video>
-        <p>Caption for the video</p>
-        </div> -->
+                <div class="video-element">
+                    <video width="320" height="240" autoplay>
+                        <source src="/video/ww1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>The Great War in Video</p>
+                </div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quos officia earum, dignissimos, id
                 provident, quaerat delectus culpa iure repellendus ullam. Corrupti omnis ipsum libero. Corporis
                 commodi
@@ -102,10 +109,10 @@
                     <p class="sub-heading">{{slug}}</p>
                     <p>
                         <div class="video-element">
-                            <!-- <video width="320" height="240" autoplay>
+                            <video width="320" height="240" autoplay>
                                 <source src="/video/ww1.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
-                            </video> -->
+                            </video>
                             <p>{{title}}</p>
                         </div>
                         {{content}}
@@ -132,27 +139,16 @@
     <script>
         // INITIALISE NAVIGATION
         navigation.init();
-
-        // // sets variable source to the pageTemplate id in index.html
         // var source = document.getElementById("pageTemplate").innerHTML;
-
-        // // Handlebars compiles the above source into a template
         // var template = Handlebars.compile(source);
 
         // fetch(`http://localhost:9999/pages.php?count=${Math.floor(Math.random() * 10)}`)
         //     .then((result) => {
-
         //         return result.json();
-
         //     })
         //     .then((data) => {
-
-        //         // data is passed to above template
         //         var output = template(data);
-
-        //         // HTML element with id "animalList" is set to the output above
         //         document.getElementById("animalList").innerHTML = output;
-
         //     });
     </script>
 
