@@ -12,30 +12,39 @@ let navigation = (function () {
 
             // console.log(link);
 
-            link.addEventListener('click', function (e) {
+            link.addEventListener('click', function(e){
 
-                e.preventDefault();
-
-
-                var temp = {
-                    name: link.innerHTML.toLowerCase(),
-                    link: `/${link.innerHTML.toLowerCase()}`,
-                    url: link.href.toLowerCase(),
-                    id: link.getAttribute('data-page-id')
-                };
-
-                currentPage = temp;
-
-                console.log(`Page ID is ${temp.id}`);
-
-                // OBJ, TITLE, LINK
-                window.history.pushState(temp, temp.name + ' IGWG', temp.link);
-
-                updateUI(temp.name);
+                clickCallback(e,link);
 
             });
 
         });
+    }
+
+    function clickCallback(e, link) {
+
+        e.preventDefault();
+
+
+        // ELEMENT TO ADD TO HISTORY
+        var temp = {
+            name: link.innerHTML.toLowerCase(),
+            link: `/${link.innerHTML.toLowerCase()}`,
+            url: link.href.toLowerCase(),
+            id: link.getAttribute('data-page-id')
+        };
+
+        // SET CURRENT STATE
+        currentPage = temp;
+
+        // console.log(`Page ID is ${temp.id}`);
+
+        // OBJ, TITLE, LINK - INTO HISTORY
+        window.history.pushState(temp, temp.name + ' IGWG', temp.url);
+
+        // TODO: REMOVE - TEMP FOR TESTING
+        updateUI(temp.name);
+
     }
 
     function addHistoryTracker() {
@@ -72,13 +81,14 @@ let navigation = (function () {
     function init() {
         console.log('INIT RAN');
         checkCurrentPage();
-        addListeners();
+        // addListeners();
         addHistoryTracker();
     }
 
 
     return {
-        init: init
+        init: init,
+        clickCallback: clickCallback
     };
 
 }());
