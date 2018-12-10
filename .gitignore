@@ -2,6 +2,7 @@
 /app/css/
 /app/video/
 /api/vendor/
+.DS_Store
 # Logs
 logs
 *.log
