@@ -3,19 +3,33 @@ header("Content-type: application/json");
 header("Access-Control-Allow-Origin: http://localhost:3000");
 
 $data = ['message' => 'Data will go here'];
-$menu = [
-    0=>'home',
-    1=>'about',
-    2=> ['war'=> [
+$menu = [[
+     'name'=>'About Us',
+        'url'=>'/about-us',
+        'slug'=>'about-us',
+        'children'=>[[
+            'name'=>'About Us',
+               'url'=>'/about-us',
+               'slug'=>'about-us'
+        ],
+        [
+            'name'=>'About Us',
+               'url'=>'/about-us',
+               'slug'=>'about-us'
+           ]]
+    ],
+
+    ['link'=>[
+        'name'=>'About Us',
+        'url'=>'/about-us',
+        'slug'=>'about-us'
+    ]],
+    'about',
+    [
         'Aviation During WW1',
         'Technology',
         'Another'
-    ]],
-    3=>['maritime'=>[
-        'submarines',
-        'boats',
-        'warships'
-    ]],
+    ],
     4=>'contact'
 ];
 

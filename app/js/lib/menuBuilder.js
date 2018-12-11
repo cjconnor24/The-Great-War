@@ -1,6 +1,6 @@
 var menu = (function(){
 
-    // var menuStructure = {};
+    console.log("Menu Module Has Launched");
 
     function buildMenu(){
         

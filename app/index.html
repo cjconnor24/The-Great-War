@@ -128,19 +128,45 @@
         </div>
     </script>
 
-    <footer>
+    <footer id="footer">
 
         <p>Interactive Great War Guide - Chris Connor &copy; 2018</p>
 
     </footer>
-    <script src="js/handlebars-v4.0.12.js"></script>
+    <!-- <script src="js/handlebars-v4.0.12.js"></script> -->
+    <script src="js/lib/api.js"></script>
+    <script src="js/lib/menuBuilder.js"></script>
     <script src="js/navigation.js"></script>
-    <script src="js/models/Media.js"></script> 
-    <script src="js/models/Page.js"></script> 
-    <script src="js/app.js"></script>
+    <!-- <script src="js/models/Media.js"></script>  -->
+    <!-- <script src="js/models/Page.js"></script>  -->
+    <!-- <script src="js/app.js"></script> -->
     <script>
         // INITIALISE NAVIGATION
-        navigation.init();
+        // navigation.init();
+        // api.getPages().then((x)=>{
+        //     console.log(x);
+        // })
+
+        // window.addEventListener('click', function (event) {
+
+        //     if(event.target.tagName.toLowerCase() == 'a'){
+        //         event.preventDefault();
+        //         navigation.clickCallback(event,event.target);
+        //     }
+        // });
+
+        // document.querySelectorAll('a').forEach((link) => {
+
+        //     link.addEventListener('click', function (event) {
+        //         event.preventDefault();
+        //         console.log(event);
+        //         navigation.click();
+        //     });
+
+        // });
+
+        // menu.buildMenu();
+        // console.log(api.getPages());
         // var source = document.getElementById("pageTemplate").innerHTML;
         // var template = Handlebars.compile(source);
 
@@ -152,6 +178,40 @@
         //         var output = template(data);
         //         document.getElementById("animalList").innerHTML = output;
         //     });
+    </script>
+
+    <script>
+    
+    var pages = {};
+
+    //LOAD PAGES
+    fetch('http://localhost:8080/')
+    .then(function(results){
+        return results.json();
+    })
+    .then(function(json){
+
+        pages = json.pages;
+        parentPages = pages.filter(page => page.parentId==null);
+        childPages = pages.filter(page => page.parentId!==null);
+
+        var childIDs = childPages.map((child) => child.id);
+
+        console.log('Pages before',pages);
+
+        childPages.forEach((page)=>{
+
+            var temp = pages.splice(pages.indexOf(page),1);
+            console.log(temp[0].id);
+            
+        });
+
+        console.log('Pages after',pages);
+
+        
+
+    })
+    
     </script>
 
 </body>

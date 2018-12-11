@@ -1,6 +1,6 @@
 let navigation = (function () {
 
-    console.log("ASD HELLO FROM NAVIATION");
+    console.log("Navigation Module Has Launched");
 
     let currentPage = null;
 
