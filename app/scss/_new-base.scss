@@ -9,6 +9,14 @@ $subheading-font: Oswald, Arial, Helvetica, sans-serif;;
 $darkcolor:#28231D;
 $highlightcolor: #E9CC8A;
 
+// INHERITANCE
+%column-flex {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 * {
     box-sizing: border-box;
@@ -19,6 +27,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: url('/img/tank-bg.jpg') no-repeat #28231D; // background: #28231D;
     background-size: cover;
+    background-attachment:fixed;
     color: #FFF;
 }
 
@@ -32,6 +41,20 @@ h5 {
     // letter-spacing:0.1em;
 }
 
+.large-button {
+    @extend %column-flex;
+    margin:30px auto 0 auto;
+    $size: 175px;
+    height:$size;
+    width: $size;
+    text-decoration:none;
+    border:2px dashed $highlightcolor;
+    font-size:0.75em;
+    border-radius:50%;
+    color:$highlightcolor;
+    background: rgba(0,0,0,0.5);
+
+}
 
 header {
 
@@ -40,10 +63,11 @@ header {
     // height:100px;
     // display:flex;
     text-align: center;
-    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0));
+    background:linear-gradient(rgba(0,0,0,0.75) 50%,rgba(0,0,0,0) 100%);
     // background: #F00;
     margin:0;padding:0;
-    position:absolute;left:0;top:0;
+    position:fixed;left:0;top:0;
+    z-index:100;
 
     .logo {
         font-family:Cinzel, $heading-font;
@@ -51,6 +75,12 @@ header {
         font-size:1.5em;
         cursor: pointer;
         display:inline-block;
+        transition:.75s;
+
+        &:hover {
+            transform:scale(1.1);
+        }
+
         span {
             display:inline-block;
             padding:0.25em 0;
@@ -80,23 +110,7 @@ header {
     }
 }
 
-.scroller {
-    @extend %column-flex;
-    height:100px;
-    width:100px;
-    margin:1em 0 0 0;
-    border:1px dotted $highlightcolor;
-    color:#FFF;
-    text-decoration:none;
-    border-radius:50%;
-}
 
-%column-flex {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 
 
@@ -119,14 +133,60 @@ header {
 }
 .row {
     width:100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 33% 33% auto;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+//   grid-template-rows: 50vh 100px auto;
+    background:linear-gradient(rgba(0,0,0,0.75) 0%,rgba(0,0,0,0) 25%);
 
     .element {
-        flex:1;
-        height: 50vh;
-        // width:50%;
-        background: rgba(0,0,0,0.25);
+        // flex:1;
+        // height: 50vh;
+        
+        // margin:30px 0 0 0;
+        // background: rgba(0,0,0,1);
+        // margin:30px;
         @extend %column-flex;
+        position:relative;
+        overflow: hidden;
+
+        .content {
+            @extend %column-flex;
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.0) 100%);
+            width:100%;
+            padding:2em 0 2em 1em;
+            transition:0.5s;
+            
+
+            & * {
+                transition:0.5s;
+                text-shadow:0 0 20px #000;
+            }
+
+        }
+
+        &:hover .img-placeholder img {
+            transform:scale(1.1);
+        }
+
+        &:hover .content * {
+            transform:translateY(10px);
+            text-shadow:0 0 10px #000;
+        }
+        
+
+        .img-placeholder {
+            position:absolute;
+            width:100%;
+            z-index:-1;
+            img {
+                // max-width:1280px;
+                width:150%;
+                transition:1s;
+            }
+        }
 
         * {
             margin:0;padding:0;
