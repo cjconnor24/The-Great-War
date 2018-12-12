@@ -1,54 +1,64 @@
 header {
-
-    $header-height:100px;
+    
     width: 100%;
     text-align: center;
-    background:linear-gradient(rgba(0,0,0,0.75) 50%,rgba(0,0,0,0) 100%);
     margin:0;padding:0;
-    position:fixed;left:0;top:0;
+    position:fixed;left:0;top:0;right:0;
     z-index:100;
-
-    .logo {
-        font-family:Cinzel, $heading-font;
-        font-weight:bold;
-        font-size:1.5em;
-        cursor: pointer;
-        display:inline-block;
-        transition:.75s;
-
-        &:hover {
-            transform:scale(1.1);
-        }
-
-        span {
-            display:inline-block;
-            padding:0.25em 0;
-            margin:0 0.25em;
-            // position: relative;top:-10px;
-            // font-size:.8em;
-            border-top:2px solid $highlightcolor;
-            border-bottom:2px solid $highlightcolor;
-        }
-        .sub {
-            font-size:0.5em;
-            font-family:"Oswald";
-            text-transform: uppercase;
-            letter-spacing: 0.5em;
-            color:darken(white,10);
-            position: relative;top:-20px;
-        }
-    }
+    @extend %column-flex;
     
-    nav {
+    .header-row{
+        box-shadow:0 0 30px #000;
+        // background:rgba(0,0,0,0.95);
+        background:linear-gradient(rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.95) 100%);
+
+        height: 100px;
+        width: 100%;
+        @extend %column-flex;
+
+        .logo {
+            a {
+                text-decoration:none;color:#FFF;
+            }
+            font-family:Cinzel, $heading-font;
+            font-weight:bold;
+            font-size:1.5em;
+            cursor: pointer;
+            display:inline-block;
+            transition:.75s;
+
+            &:hover {
+                transform:scale(1.1);
+            }
+
+            span {
+                display:inline-block;
+                padding:0.25em 0;
+                margin:0 0.25em;
+                // position: relative;top:-10px;
+                // font-size:.8em;
+                border-top:2px solid $highlightcolor;
+                border-bottom:2px solid $highlightcolor;
+            }
+            .sub {
+                font-size:0.5em;
+                font-family:"Oswald";
+                text-transform: uppercase;
+                letter-spacing: 0.5em;
+                color:darken(white,10);
+                position: relative;top:-20px;
+            }
+        }
 
         .search {
             
             $size:32px;
             height: $size;
             width: $size;
-            top:30px;right:30px;
+            top:34px;right:34px;
             cursor: pointer;
             position:absolute;
+            z-index:101;
 
             &::before {
                 content:'\f002';
@@ -70,7 +80,10 @@ header {
             height: $size;
             width: $size * 1.25;
             position: absolute;
-            top:30px;left:30px;
+            top:34px;left:34px;
+            overflow: hidden;
+            cursor: pointer;
+            z-index:101;
             // top:40px;
             // right:30px;
 
@@ -91,16 +104,61 @@ header {
             span:nth-child(1){ top:0;left:0;}
             span:nth-child(1){ top:($size/2) - ($size/8)/2;left:0;}
             span:nth-child(3){ bottom:0;left:0;}
+
+            &.open {
+                span {
+                    top:$size/2;
+                }
+                span:nth-child(1){
+                    transform:rotate(45deg);
+                }
+                span:nth-child(3){
+                    transform:rotate(-45deg);
+                }
+                span:nth-child(2){
+                    transform:translateX(-50px);
+                }
+            }
+
         }
 
+    }
+    
+    nav {
+    
+        // height: 100vh;
+        width: 100%;
+        display:block;
+        position:fixed;
+        top:0px;
+        background: rgba(0,0,0,0.95);
+        // background: #F00;
+        transform:translateX(-100%);
+        transition:0.5s ease-in-out;
+
+        &.open {
+            transform:translateX(0);
+        }
+
+        h1 {
+            font-family:$heading-font;
+            text-transform: uppercase;
+            border-bottom:1px solid $highlightcolor;
+            padding:0 0 30px 0;
+            letter-spacing:2px;
+            display:inline-block;
+            // font-size:1.21em;
+        }
+        
         ul {
             list-style: none;margin:0;padding:0;
             display:block;
-            display:none;
             width: 100%;
             text-align: center;
+            
+            height:calc(100vh - 100px);
             li {
-
+    
                 a {
                     display: block;
                     width: 100%;
@@ -108,58 +166,55 @@ header {
                     text-decoration:none;
                     color:$highlightcolor;
                     font-size:2em;
+                    padding:1em 0;
+                    transition:0.5s;
+                    &:hover {
+                        color:#FFF;
+                    }
                 }
-
+    
             }
             
         }
+    
     }
+
 }
 
-.page-element {
-    max-width:1280px;
-    margin:0 auto;
-    font-size:1.5em;
-    padding:50px 0 30px 0;
 
-    .page-head {
+
+@media only screen and (max-width: 600px) {
+
+    .site-container {
+        font-size:0.8em;
+    }
+
+    header {
+        font-size:1em;
+    }
+
+    header .header-row {
+
+        .hamburger {
+            left:20px;
+        }
+        .search {
+            right:20px;
+        }
+     
+    .hamburger, .search {
+        transform:scale(0.7);
+    }
+
+    }
         
-        h1 {
-        }
-        p {
-            color:$highlightcolor;
-            font-family:$subheading-font;
-            font-size:1.1em;
-        }
 
-    }
+    header .header-row .logo {
+        font-size:1.2em;
 
-    .page-content {
-
-        width:100%;
-
-        > p:first-child {
-            color:$highlightcolor;
-        }    
-        > p:first-child:first-letter {
-            font-size:60px;
-            padding:0 10px 10px 0;
-            // line-height: 2em;
-        }
-
-        .row {
-            width:100%;
-            display:flex!important;
-
-            justify-content:space-between;
-
-            .col {
-                flex-basis: 48%;
-                // flex:1 2;
-                // width:100px;
-            }
+        .sub {
+            top:-10px;
         }
     }
-    
-    
+
 }
