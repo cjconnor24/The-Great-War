@@ -1,0 +1,18 @@
+// FONTS
+// $heading-font: Libre Baskerville, 'Times New Roman', Times, serif;
+$heading-font: 'Noto Serif SC', 'Times New Roman', Times, serif;
+
+
+$subheading-font: Oswald, Arial, Helvetica, sans-serif;;
+
+// COLOURS
+$darkcolor:#28231D;
+$highlightcolor: #E9CC8A;
+
+// INHERITANCE
+%column-flex {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
