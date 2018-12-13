@@ -1,0 +1,219 @@
+{
+    "regiments": [
+        {
+            "title":"The Argyle and Sutherland Highlanders",
+            "description":"The Argyll & Sutherland Highlanders boasts a long and distinguished history dating back to the late 18th century. It was the original 'Thin Red Line' - the name given after its decisive action in the Crimean War which saw the soldiers hailed as the essence of British heroism.",
+            "origins": [
+                "It was one of six Scottish line infantry regiments and formed when the 91st and 93rd Regiments of Foot were merged. It served in South Africa, Ceylon and Hong Kong.",
+                "The 91st Regiment of Foot was raised in 1793 by John Campbell, 5th Duke of Argyll. Later based in South Africa after capturing the Cape of Good Hope from the Dutch, it also served in the Zulu and Peninsular wars.",
+                "In 1871 it served as Guard of Honour at the wedding of Princess Louise, fourth daughter of Queen Victoria, to John Campbell, Marques of Lorne and the Duke of Argyll's heir. The regiment was renamed Princess Louise's Argyllshire Highlanders.",
+                "The 93rd Regiment of Foot was raised in 1799 by Major-General William Wemyss for the Countess of Sutherland, and served in North America in a failed attempt to capture New Orleans.",
+                "In 1854 at the Battle of Balaklava during the Crimean War, the battalion single-handedly defended the British Army base and four squadrons from charging Russian cavalry. The battalion held steady and broke the charge using only musket fire. A correspondent for The Times reported that nothing stood between the British forces and defeat but a 'thin red streak tipped with a line of steel of the 93rd'. The nickname the 'Thin Red Line' was confirmed."
+            ],
+            "nicknames": [
+                "Thanks to their extraordinary courage, the battalions became known as the 'Fighting Highlanders' and the 'Thin Red Line'."
+            ],
+            "march-description": "Many regiments have their own marches which were traditionally used to rally the troops and boost morale before battle.",
+            "marches": [
+                "Heilan' Laddie (quick)",
+                "Monoymusk (charge)",
+                "Lochaber No More (funerals)"
+            ],
+            "tartan": [
+                "The Black Watch tartan (Government sett)",
+                "Grant Hunting tartan"
+            ],
+            "ww1" : [
+                "At the outbreak of the war, the regiment had two regular (1st and 2nd), two militia (3rd and 4th) and five territorial battalions (5th - 9th), with several more raised for Kitchener's Army.",
+                "10 battalions served in France and Flanders while four were dispatched to southern Europe.",
+                "The regiment was awarded 13 battle honours and six Victoria Crosses.",
+                "6,900 men lost their lives."
+            ]
+        },
+        {
+            "title":"The Royal Scots",
+            "description":"The Royal Scots, once the oldest infantry in the British Army, were involved in almost every major battle fought by the army from 1633 onwards. One of the most decorated regiments of World War I, an estimated 100,000 soldiers served with them during the conflict.",
+            "origins": [
+                "Started life in 1633 as the Royal Regiment of the Foot by Sir John Hepburn, who had been tasked by Charles I to recruit troops to serve in France.",
+                "Recalled to Britain in 1661 following the disbandment of the New Model Army and the introduction of the Regular Army. This was the model used by all future regiments.",
+                "Only renamed the Royal Scots (Lothian Regiment) in the 19th century when it became the county regiment of Edinburgh.",
+                "The Royal Scots saw action in numerous conflicts from the Monmouth Rebellion and the Jacobite Rising at Culloden, to the Napoleonic Wars at the Battle of Waterloo, and the Crimean and Boer wars.",
+                "Joined forces with the King's Own Scottish Borders in 2006 and became part of the Royal Scots Borderers."
+            ],
+            "nicknames": [
+                "In the 17th century the regiment took part in a boasting competition with the French Regiment of Picardy who boasted they'd been guardians of Christ's tomb before the Resurrection. The Scottish soldiers' response and their subsequent nickname was 'Pontius Pilate's Bodyguard'.",
+                "When the 9th Territorial Battalion joined forces with the 7th Battalion, they were the only kilted soldiers of the lowland regiment made up of Highlanders who had settled in Edinburgh. They were affectionately known as the 'Dandy Ninth'.",
+                "They were also known as 'First of foot, right of line and the pride of the British army'."
+            ],
+            "marches": [
+                "Dumbarton's Drums (quick march)",
+                "The Garb of Old Gaul (slow march)"
+            ],
+            "tartan": [
+                "Hunting Stewart (trews)",
+                "Royal Stewart (pipers, kilts and plaids)"
+            ],
+            "ww1-description" : "On the eve of World War I, the Royal Scots consisted of 10 battalions, with eight more based in the Lothians. The 3rd (Special Reserve) Battalion was based at Glencorse along with the regimental depot and seven others were all Territorial Force (volunteer reserve) battalions and had drill halls spread across the region.",
+            "ww1" : [
+                [
+                    "The Royal Scots raised 35 battalions of infantry, 15 of which served as active front line units.",
+                    "Of the 100,000 men who served over the course of the war, 11,162 were killed and 40,000 wounded.",
+                    "The active service battalions were engaged in every area of battle, from the Western Front and Dardanelles, to Macedonia, Egypt and North Russia.",
+                    "The soldiers were awarded a total of 71 battle honours and 6 Victoria Crosses."
+                ]
+            ]
+        },
+        {
+            "title":"The Queen's Own Cameron Highlanders",
+            "description":"Named after one of the most powerful Highland clans of the time, the Queen's Own Cameron Highlanders was formed during the French Revolutionary War. It was Queen Victoria who ordered it be known as the 'Queen's Own' in recognition of its courageous service record.",
+            "origins": [
+                "It was raised as the 79th Regiment of Foot (Cameronian) Volunteers at the height of the French Revolutionary War by Alan Cameron of Erracht in 1793. ",
+                "The regiment fought in the Dutch Helder Campaign, the Napoleonic Wars, including the final battles of Quatre Bass and Waterloo, the Crimean War and the Indian Mutiny. ",
+                "Queen Victoria awarded the regiment new colours after its return from India in 1871, when it was renamed the 'Queen's Own'.",
+                "The 79th Foot became the 1st Battalion of the Cameron Highlanders, the county regiment of Inverness-shire. Stationed in Gibraltar, it was sent to Egypt and took part in the invasion and occupation of the country, serving at the Battle of Tel-el-Kebir. ",
+                "The 2nd Battalion was formed in 1897 and fought in the Second Boer War, Malta, Crete, China and India."
+            ],
+            "marches": [
+                "Piobroch O'Donuil Dubh (march past in quick time)",
+                "The Cameron Highlanders (quick)",
+                "The Garb of Old Gaul (march past in slow time)"
+            ],
+            "tartan": [
+                "Cameron of Erracht"
+            ],
+            "ww1" : [
+                "The regiment expanded to 13 battalions, nine of which served in battle. ",
+                "It received 10 battle honours and lost 5,930 men over the course of the war with three awarded the Victoria Cross."
+            ]
+        },
+        {
+            "title":"The Cameronians (Scottish Rifles)",
+            "description":"The Cameronians were the only regiment of rifles in the Scottish infantry and were formed during the political and religious turmoil of the 17th century. They were involved in conflicts throughout the world during World War I.",
+            "origins": [
+                "The Cameronians (Scottish Rifles) formed when the 26th Regiment of Foot (The Cameronians) Regiment joined forces with the 90th Regiment of Foot (Perthshire Volunteers) in 1881.",
+                "The 1st Battalion was unofficially known as 'the Cameronians', while the 2nd Battalion was known as 'the Scottish Rifles'. Together they served in the Second Boer War.",
+                "Their roots can be traced back to the 1680s, when they were called the Cameronian Guard. It took its name from the Cameronians, followers of Richard Cameron, a minister and leader in the Covenanter movement. He declared war on King Charles II after the king tried to remove Presbyterian ministers from the Church of Scotland for refusing to accept the rule of the bishops.",
+                "Officially recognised in 1689 as the 26th (Cameronian) Regiment of Foot following the Glorious Revolution under King William III.",
+                "Served at the Battle of Dunkeld during the First Jacobite Rising and in campaigns led by the Duke of Marlborough.",
+                "The regiment won special recognition at the Battle of Blenheim during the War of the Spanish Succession and saw action in the American War of Independence, the Napoleonic Wars, and at the Battle of Corunna during the Peninsular War. It also served in India and China during the First Opium War and took part in the Expedition to Abyssinia (Ethiopia).",
+                "The 90th Regiment of Foot (Perthshire Volunteers) was formed in 1794 and served during the French Revolutionary War, the Napoleonic Wars and in South Africa during the Cape Frontier War and Second Boer War."
+            ],
+            "marches": [
+                "Within a Mile of Edinburgh Town (quick)",
+                "The Garb of Old Gaul (slow)"
+            ],
+            "tartan": [
+                "Douglas"
+            ],
+            "ww1" : [
+                "Both battalions were posted to the Western Front in 1914 and remained there throughout the war. The regiment raised an additional 25 battalions from the Reserve, Territorial and New armies over the course of the conflict.",
+                "They saw action in France, Belgium, Gallipoli, Egypt, Salonika and at various home stations, receiving a total of 27 battle honours. Over 7,000 men of the regiment lost their lives with several awarded the Victoria Cross."
+            ]
+        },
+        {
+            "title":"The Royal Scots Fusulers",
+            "description":"Winston Churchill famously said 'it was in Scotland I found the three best things in my life: my wife, my constituency and my regiment'. The regiment he found was the Royal Scots Fusiliers, the second oldest Scottish regiment and one of the most distinguished in the British Army.",
+            "origins": [
+                "It was originally raised in 1678 as the Earl of Mar's Regiment of Foot by Stuart loyalist Charles Erskine, 5th Earl of Mar, to suppress rebelling Covenanters.",
+                "In 1689, the regiment was converted to 'Fusiliers' after being armed with 'Fusil' muskets - the most technically advanced weaponry of the day. It wasn't until 1881 that it was renamed the Royal Scots Fusiliers.",
+                "The regiment fought in many major conflicts from the Second Jacobite Rebellion at Culloden to the American War of Independence and the Boer wars.",
+                "In 1959 it was merged with the Highland Light Infantry (City of Glasgow Regiment) to form the Royal Highland Fusiliers."
+            ],
+            "nicknames": [
+                "The regiment became known as the 'Duke of Marlborough's Own' in the wake of its formidable performance in all of Marlborough's campaigns during the War of the Spanish Succession.",
+            ],
+            "marches": [
+                "Highland Laddie (Pipes)",
+            ],
+            "tartan": [
+                "Hunting Erskine"
+            ],
+            "ww1" : [
+                "During the war the regiment raised 19 battalions, was awarded 58 battle honours and four Victoria Crosses.",
+                "A total of 5,600 men were killed."
+            ]
+        },
+        {
+            "title":"The Highland Light Infantry",
+            "description":"Popularly known as the HLI, the Highland Light Infantry recruited mainly from Glasgow and the surrounding lowlands, but it more than lived up to its title with a famed Highland lineage and identity.",
+            "origins": [
+                "Formed in 1881 when the 71st (Highland) Light Infantry and the 74th Regiment of Foot merged.",
+                "Its history stretches back to 1771, when the 71st were originally raised by John Mackenzie, Lord MacLeod, as the 73rd (Highland) Regiment of Foot.",
+                "It was the first clan regiment formed following the outbreak of the American Revolutionary War.",
+                "The 74th was raised in 1787 by Archibald Campbell, its first colonel, and became known as Campbell's Highlanders.",
+                "After merging, the regiment's 2nd Battalion was deployed to Egypt and then India for 15 years. The 1st Battalion was posted to Malta and then fought in the Second Boer War, before also serving in India.",
+                "The regiment was eventually merged with the Royal Scots Fusiliers in 1959 to form the Royal Highland Fusiliers (Princess Margaret's Own Glasgow and Ayrshire Regiment)."
+            ],
+            "nicknames": [
+                "The regiment was nicknamed 'Hell's Last Issue' (a humorous backronym).",
+                "Inherited from its parent regiment the 71st Highlanders during the Peninsular War, they were also known as the 'Glesga Keelies'."
+            ],
+            "marches": [
+                "The Bugle Horne (quick)"
+            ],
+            "tartan": [
+                "MacKenzie"
+            ],
+            "ww1" : [
+                "The 2nd Battalion was immediately deployed to the Western Front following the outbreak of World War I, and remained there throughout the conflict.",
+                "The 1st Battalion arrived in December 1914 and in January 1916 was dispatched to Mesopotamia (Iraq).",
+                "An additional 14 territorial battalions were raised over the course of the war, three of which served at Gallipoli 1915, alongside 11 reserve and service battalions.",
+                "Several officers were awarded the Victoria Cross."
+            ]
+        },
+        {
+            "title":"The Gordon Highlanders",
+            "description":"After witnessing the courage and skill of the Gordon Highlanders in the Second Boer War, a young, roving reporter named Winston Churchill described them as 'the finest regiment in the world'. Over a century later, this historic infantry regiment remains one of the British Army's most celebrated.",
+            "origins": [
+                "Formed in 1881 when the 75th (Stirlingshire) Regiment of Foot merged with the 92nd (Gordon Highlanders) Regiment of Foot.",
+                "The 75th Foot was raised in 1787, by Colonel Robert Abercromby of Tullibody, for service in India and would later see action in the Indian Mutiny, South Africa, Egypt and on the North West Frontier.",
+                "The 92nd Foot started life as the 100th Highlanders by the Duke of Gordon in 1794 and served in the Low Countries, Egypt, Corunna, the Peninsular War, Battle of Waterloo, Second Afghan War, and the Boer Wars. It also saw action in Egypt at the Battle of Tel-El-Kebir and during operations on the North West Frontier in India."
+            ],
+            "marches": [
+                "The Cock o' the North",
+                "St Andrew's Cross",
+                "The Garb of Old Gaul"
+            ],
+            "tartan": [
+                "Gordon Tartan"
+            ],
+            "ww1" : [
+                "The regiment raised 21 battalions during the conflict, serving on the Western Front and in Italy.",
+                "An estimated 50,000 men served over the course of the conflict with 9,000 killed and 20,000 wounded or reported missing.",
+                "It received 57 battle honours and four Victoria Crosses.",
+                "Unlike most active service regiments, the Gordon Highlanders didn't serve in any other combat zones with the exception of the 2nd Gordons, who were sent as part of the joint Anglo-French forces to help the Italians following their defeat by Austro-German forces at the Battle of Caporetto in 1917."
+            ]
+        },
+        {
+            "title":"The Black Watch",
+            "description":"The Black Watch is an elite battalion of the British Army, with a reputation of honour, bravery and dedication to king and country. Their history stretches back to the dramatic Jacobite risings, military campaigns in foreign countries and the trenches of World War I. ",
+            "origins": [
+                "Formed in 1725 when George II authorised General George Wade to create six 'watch' regiments to patrol the Highlands and maintain law and order, following the Jacobite Rising of 1715.",
+                "Soldiers were recruited from Clans Campbell, Fraser, Munro and Grant - those loyal to the Crown.",
+                "Originally named the Regiment of the Line, they became known as Am Freiceadan Dubh - 'The Black Watch' in Gaelic.",
+                "Black Watch was possibly a reference to the dark tartan of the regiment's uniform, because some Highlanders thought they were 'black-hearted' for enforcing the law of a harsh government, or due to the defence against protection rackets, or 'black mail' at the time.",
+                "Joined forces with the 73rd (Perthshire) Regiment of Foot in 1881. Together they formed the two battalions of the newly created Black Watch (Royal Highlanders).",
+                "Prior to World War I the regiment served in India, Egypt, Sri Lanka and South Africa during the Second Boer War."
+            ],
+            "nicknames": [
+                "After their parent regiment, the 42nd (Royal Highland) Regiment of Foot, 'the Forty Twa'.",
+                "Other regiments referred to them as the 'Black Jocks'.",
+                "As the soldiers wore kilts and were fearless in battle, German troops called them Die Damen aus der Hölle, 'the Ladies from Hell'."
+            ],
+            "marches": [
+                "All the Bonnets are o'er the Border (quick march)",
+                "The Garb of Old Gaul (slow march)",
+                "Hielan Laddie (pipes and drums quick march)",
+                "My Home (pipes and drums slow march)",
+                "Highland Cradle Song (pipes and drums slow march)"
+            ],
+            "tartan": [
+                "Officially known as the Government Tartan."
+            ],
+            "ww1" : [
+                "25 battalions of the regiment fought over the course of the World War I, mainly in Flanders and France, except the 2nd and 10th battalions which served in Mesopotamia (Iraq), Palestine and the Balkans.",
+                "Awarded 25 battle honours, 4 Victoria Crosses and lost 8,000 men."
+            ]
+        }      
+    ]
+}
