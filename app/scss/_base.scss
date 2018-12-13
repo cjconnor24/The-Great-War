@@ -1,14 +1,15 @@
-$darkcolor:#28231D;
-$highlightcolor: #E9CC8A;
+
+
 * {
     box-sizing: border-box;
 }
 
 body {
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: url('/img/tank-bg.jpg') no-repeat #28231D; // background: #28231D;
     background-size: cover;
+    background-attachment:fixed;
     color: #FFF;
 }
 
@@ -17,134 +18,79 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: Libre Baskerville, 'Times New Roman', Times, serif;
+    font-family: $heading-font;
+    font-weight:900;
+    // letter-spacing:0.1em;
 }
 
-.sub-heading {
-    color: $highlightcolor;
-    font-family: Oswald;
-    font-size: 1.2em
+.site-container {
+    padding-top:100px;
 }
 
-.container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-}
-
-$navheight:70px;
-nav {
-    // background: #000;
-    &::after {
-        content: ' ';
-        clear: both;
-        display: block;
-    }
-}
-
-.hamburger {
-    $hbsize:30px;
-    width: $hbsize*1.2;
-    height: $hbsize;
-    position:absolute;
-
-    div {
-        height: $hbsize/5;
-        width:100%;
-        background:$highlightcolor;
-        position:absolute;
-        border-radius:$hbsize/5;
-    }
-    div:first-child() {
-        top:0;left:0;
-    }
-    div:nth-child(2) {
-        top:($hbsize/5)*2;
-    }
-    div:nth-child(3) {
-        bottom:0;
-    }
-    
-    &.active div:nth-child(2) {
-        transform: rotate(45deg);
-    }
-}
-
-footer {
+.large-button {
+    @extend %column-flex;
+    margin:30px auto 0 auto;
+    $size: 175px;
+    height:$size;
+    width: $size;
+    text-decoration:none;
+    border:2px dashed $highlightcolor;
+    font-size:0.75em;
+    border-radius:50%;
     color:$highlightcolor;
-    text-shadow:0 0 2px #000;
+    background: rgba(0,0,0,0.5);
+
+}
+
+.main-logo {
+    max-height:300px;
+    margin-top:50px;
+    width:100%;
+}
+
+
+.full-size-hero {
+    font-size:2em;
+    height: calc(100vh - 100px);
+    width: 100vw;
     text-align: center;
-}
+    display:flex;
+    @extend %column-flex;
 
-// 
-.page-row {
-    display: flex;
-    justify-content: space-around; // width:100%;background: #F00;
-    flex-wrap: wrap;
-    .page-block {
-        background: rgba(0, 0, 0, 0.4);
-        padding: 2em;
-        border-radius: 10px;
-        width: 60%;
-        margin: 50px 0 2em 0;
-        transition: 0.25s;
-        &:hover {
-            background: rgba(0, 0, 0, 0.6) !important;
-        }
+    h1 {
+        margin:0;padding:0;
     }
-}
-
-// 
-.search-box {
-    $sbsize:40px;
-    height: $sbsize;
-    line-height: $sbsize;
-    border: none;
-    border-radius: 5px;
-    background: #FFF;
-    float: right;
-    padding: 0 0 0 10px;
-    margin: 20px 0 0 0;
-    i {
-        color: $darkcolor;
-        margin: 0 10px 0 0;
-    }
-    input {
-        // background: #CCC;
-        margin: 0;
-        padding: 0;
-    }
-}
-
-.navigation {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    li {
-        float: left;
-        a {
-            text-decoration: none;
-            color: $highlightcolor;
-            font-family: Oswald;
-            text-transform: uppercase;
-            height: $navheight;
-            display: block;
-            padding: 0 1em;
-            line-height: $navheight;
-            &:hover {
-                background: lighten(#000, 20);
-            }
-        }
-    }
-}
-
-.video-element {
-    margin: 0 0 1em 1em;
-    float: right;
     p {
-        color: $highlightcolor;
-        font-family: Oswald, sans-serif;
-        text-transform: italic;
-        text-align: center;
+        margin:0;padding:0;
+    }
+
+}
+.hero {
+width:100%;
+background: #F00;
+padding:50px 0;
+background:url('/img/tank.jpg') no-repeat center center;
+background-size: cover;
+position:relative;
+
+
+
+    .content {
+        flex-direction: column;
+        justify-content: center;
+        max-width:1280px;
+        width:100%;
+        margin:0 auto;        
+        z-index:100;
+        display:flex;
+        &::before{
+            content:'';
+            background: rgba(0,0,0,0.5);
+            position:absolute;
+            top:0;left:0;
+            width:100%;
+            height: 100%;
+            display:block;
+        }
     }
 }

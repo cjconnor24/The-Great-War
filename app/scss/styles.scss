@@ -1,6 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=EB+Garamond|Libre+Baskerville|Oswald');
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond|Libre+Baskerville|Oswald|Montserrat|Noto+Serif+SC:400,900');
 
-
+@import "animate";
+@import "main-variables";
 @import "normalize";
 @import "base";
+@import "header_nav";
+@import "main-grid";
+@import "page-element";
 @import "buttons";

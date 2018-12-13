@@ -1,0 +1,150 @@
+$darkcolor:#28231D;
+$highlightcolor: #E9CC8A;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url('/img/tank-bg.jpg') no-repeat #28231D; // background: #28231D;
+    background-size: cover;
+    color: #FFF;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: Libre Baskerville, 'Times New Roman', Times, serif;
+}
+
+.sub-heading {
+    color: $highlightcolor;
+    font-family: Oswald;
+    font-size: 1.2em
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+$navheight:70px;
+nav {
+    // background: #000;
+    &::after {
+        content: ' ';
+        clear: both;
+        display: block;
+    }
+}
+
+.hamburger {
+    $hbsize:30px;
+    width: $hbsize*1.2;
+    height: $hbsize;
+    position:absolute;
+
+    div {
+        height: $hbsize/5;
+        width:100%;
+        background:$highlightcolor;
+        position:absolute;
+        border-radius:$hbsize/5;
+    }
+    div:first-child() {
+        top:0;left:0;
+    }
+    div:nth-child(2) {
+        top:($hbsize/5)*2;
+    }
+    div:nth-child(3) {
+        bottom:0;
+    }
+    
+    &.active div:nth-child(2) {
+        transform: rotate(45deg);
+    }
+}
+
+footer {
+    color:$highlightcolor;
+    text-shadow:0 0 2px #000;
+    text-align: center;
+}
+
+// 
+.page-row {
+    display: flex;
+    justify-content: space-around; // width:100%;background: #F00;
+    flex-wrap: wrap;
+    .page-block {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 2em;
+        border-radius: 10px;
+        width: 60%;
+        margin: 50px 0 2em 0;
+        transition: 0.25s;
+        &:hover {
+            background: rgba(0, 0, 0, 0.6) !important;
+        }
+    }
+}
+
+// 
+.search-box {
+    $sbsize:40px;
+    height: $sbsize;
+    line-height: $sbsize;
+    border: none;
+    border-radius: 5px;
+    background: #FFF;
+    float: right;
+    padding: 0 0 0 10px;
+    margin: 20px 0 0 0;
+    i {
+        color: $darkcolor;
+        margin: 0 10px 0 0;
+    }
+    input {
+        // background: #CCC;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+        float: left;
+        a {
+            text-decoration: none;
+            color: $highlightcolor;
+            font-family: Oswald;
+            text-transform: uppercase;
+            height: $navheight;
+            display: block;
+            padding: 0 1em;
+            line-height: $navheight;
+            &:hover {
+                background: lighten(#000, 20);
+            }
+        }
+    }
+}
+
+.video-element {
+    margin: 0 0 1em 1em;
+    float: right;
+    p {
+        color: $highlightcolor;
+        font-family: Oswald, sans-serif;
+        text-transform: italic;
+        text-align: center;
+    }
+}
