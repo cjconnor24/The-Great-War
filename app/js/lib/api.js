@@ -1,51 +1,38 @@
 var api = (function () {
 
-    var _URL = 'http://localhost:8080/';
-    var _dataCache = {};
+    var CONST_API_URL = 'http://localhost:8080/';
+    var cache = {};
 
-    /**
-     * GET LIST OF PAGES
-     */
-    function getPages(){
+    function getMenuItems(){
 
-        return fetchJSON(_URL + 'index.php');
+        return fetchJSON(CONST_API_URL + 'menu.php');
 
     }
 
     /**
-     * Get Specific Page
-     * @param {Integer} id of page to retrieve
+     * Perform fetch and return to json
+     * @param {String} url URL to get
+     * @param {Object} options Options for Fetch Request
      */
-    function getPage(id){
+    function fetchJSON(url, options = {}) {
 
-        return fetchJSON(_URL + 'page/' + id );
+        //
+        if (cache[url]) {
+            console.log('data was cached');
+            return Promise.resolve(cache[url]);
+        }
 
-    }
-
-    async function getMenu(){
-        return  await fetchJSON(_URL + 'menu.php' );
-    }
-
-    /**
-     * Fetch JSON from URL whilst caching retrieval
-     * @param {String} url of data to fetch
-     */
-    async function fetchJSON(url) {
-
-        // if (_dataCache[url]) {
-        //     return Promise.resolve(_dataCache[url]);
-        // }
-
-        const res = await fetch(url);
-        const json = await res.json();
-        _dataCache[url] = json;
-        return json;
-
+        return fetch(url)
+            .then(res => res.json())
+            .then(json => {
+                cache[url] = json;
+                return json;
+            });
     }
 
     return {
-        getPages: getPages,
-        getMenu: getMenu
+        get: fetchJSON,
+        getMenuItems: getMenuItems
     }
 
 }());

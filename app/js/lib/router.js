@@ -11,9 +11,9 @@ function Router(app, defaultRoute) {
     document.addEventListener('DOMContentLoaded', doHashChange);
 }
 
-Router.prototype.addRoute = function (url, name) {
+Router.prototype.addRoute = function (url, name, dataUrl) {
     this.routes.push({
-        url, name
+        url, name, dataUrl
     });
 }
 Router.prototype.hashChange = function () {
@@ -26,14 +26,17 @@ Router.prototype.hashChange = function () {
     var routes = this.routes.filter(function (route) {
         return url.match(new RegExp(route.url, 'gi'));
     });
+    
     if (routes.length > 0) {
+
         var route = routes[0];
         this.params = new RegExp(route.url, 'gi').exec(url).slice(1);
-        console.log('LOAD THE THING FOR', route.name, this.params);
-    }
-    else {
+        console.log(route.name, this.params);
+
+    } else {
         console.log('LOAD DEFAULT?');
     }
+
 }
 
 

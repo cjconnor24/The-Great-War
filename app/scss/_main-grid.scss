@@ -7,7 +7,7 @@
 //   grid-template-rows: 50vh 100px auto;
     background:linear-gradient(rgba(0,0,0,0.75) 0%,rgba(0,0,0,0) 25%);
 
-    .element {
+    .element, a.element {
         // flex:1;
         // height: 50vh;
         
@@ -17,6 +17,8 @@
         @extend %column-flex;
         position:relative;
         overflow: hidden;
+        text-decoration:none;
+        color:#FFF;
         
         .content {
             @extend %column-flex;

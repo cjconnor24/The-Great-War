@@ -5,61 +5,70 @@ function Slide(img, caption) {
     this.caption = caption;
 }
 
-function Slider(){
-    this.slides = {};
-    this.currentPosition = 0;
-    this.elements = 0;
-    this.DOMStrings = {
-        nextButton: '.next',
-        prevButton: '.prev',
-        container: '.slideshow-container',
-        slide: '.mySlides',
-        dot: '.dot'
-    };
-    this.templates = {
 
-        container: function (slides, controls, dots) {
-            return `<div class="${DOMStrings.container.replace('.', '')}">
-        ${slides}
-        ${controls}
-        ${dots}
+
+function Slider() {
+
+// slideCollection, where, position
+        // var slides = {};
+        // var options = {};
+        // var currentPosition = 0;
+        // var maxElements = 0;
+
+        /**
+         * DOM Strings to Centralise
+         */
+        var DOMStrings = {
+            nextButton: '.next',
+            prevButton: '.prev',
+            container: '.slideshow-container',
+            slide: '.mySlides',
+            dot: '.dot'
+        }
+
+        /**
+         * TEMPLATES FOR UI
+         */
+        var templates = {
+
+            container: function (slides, controls, dots) {
+                return `<div class="${DOMStrings.container.replace('.', '')}">
+            ${slides}
+            ${controls}
+            ${dots}
+            </div>`;
+            },
+
+            slide: function (slide, n) {
+                return `<div class="${DOMStrings.slide.replace('.', '')} fade">
+            <div class="numbertext">${n + 1} / ${maxElements + 1}</div>
+            <img src="${slide.img}" style="width:100%">
+            <div class="text">${slide.caption}</div>
         </div>`;
-        },
+            },
 
-        slide: function (slide, n) {
-            return `<div class="${DOMStrings.slide.replace('.', '')} fade">
-        <div class="numbertext">${n + 1} / ${maxElements + 1}</div>
-        <img src="${slide.img}" style="width:100%">
-        <div class="text">${slide.caption}</div>
-    </div>`;
-        },
+            controls: function () {
+                return `<a class="${DOMStrings.prevButton.replace('.', '')}" >&#10094;</a>
+            <a class="${DOMStrings.nextButton.replace('.', '')}" >&#10095;</a>`;
+            },
 
-        controls: function () {
-            return `<a class="${DOMStrings.prevButton.replace('.', '')}" >&#10094;</a>
-        <a class="${DOMStrings.nextButton.replace('.', '')}" >&#10095;</a>`;
-        },
+            dots: function () {
 
-        dots: function () {
+                var templateString = '';
+                for (var i = 0; i <= maxElements; i++) {
+                    templateString += `<span class="dot" data-slide="${i}"></span>`;
+                }
 
-            var templateString = '';
-            for (var i = 0; i <= maxElements; i++) {
-                templateString += `<span class="dot" data-slide="${i}"></span>`;
-            }
+                return `<div class="dots" style="text-align:center">
+                ${templateString}
+        </div>`;
+            },
 
-            return `<div class="dots" style="text-align:center">
-            ${templateString}
-    </div>`;
-        },
+        };
 
-    };
-}
+        var addEventListeners = function () {
 
-
-
-var slider = (function (slideCollection, where, position) {
-
-
-        addEventListeners = function () {
+            console.log('adding event listeners');
 
             document.querySelector(DOMStrings.nextButton).addEventListener('click', next);
             document.querySelector(DOMStrings.prevButton).addEventListener('click', previous);
@@ -74,7 +83,9 @@ var slider = (function (slideCollection, where, position) {
 
         }
 
-        buildSlider = function () {
+        var buildSlider = function () {
+
+            // console.log(this.slides);
 
             var listOfSlides = slides.reduce((x, y, index) => {
                 return x + templates.slide(y, index);
@@ -85,7 +96,7 @@ var slider = (function (slideCollection, where, position) {
 
 
 
-        updateUI = function () {
+        var updateUI = function () {
             hideAll();
             showSlides();
         };
@@ -93,7 +104,7 @@ var slider = (function (slideCollection, where, position) {
         /**
          * CLEAR THE UI FROM IMAGES AND DOTS
          */
-        hideAll = function () {
+        var hideAll = function () {
             document.querySelectorAll(DOMStrings.slide).forEach((slide) => {
                 slide.style.display = "none";
             });
@@ -103,7 +114,7 @@ var slider = (function (slideCollection, where, position) {
         }
 
 
-        function showSlides() {
+        var showSlides = function() {
 
             document.querySelectorAll(DOMStrings.slide)[currentPosition].style.display = "block";
             document.querySelectorAll(DOMStrings.dot)[currentPosition].classList.add('active');
@@ -113,7 +124,7 @@ var slider = (function (slideCollection, where, position) {
 
         // ITERATOR FUNCTIONS
 
-        next = function () {
+        var next = function () {
 
             if (currentPosition < maxElements) {
                 currentPosition++;
@@ -124,7 +135,7 @@ var slider = (function (slideCollection, where, position) {
             console.log('NEXT', currentPosition);
         };
 
-        previous = function () {
+        var previous = function () {
 
             if (currentPosition > 0) {
                 currentPosition--;
@@ -135,51 +146,64 @@ var slider = (function (slideCollection, where, position) {
             updateUI();
         };
 
-        current = function () {
+        var current = function () {
             return slides[currentPosition];
         };
 
-        rewind = function () {
+        var rewind = function () {
             currentPosition = 0;
         };
 
-        init = function () {
+        var init = function (s,options) {
 
-            console.log("TIRGGER");
-            console.log(this);
+            var self = this;
 
-            // HIGHLIGHT THE FIRST SLIDE
-            document.querySelector(where).insertAdjacentHTML(position, buildSlider());
-            document.querySelector(DOMStrings.slide).style.display = 'block';
-            document.querySelector(DOMStrings.dot).classList.add('active');
-            addEventListeners();
-
+        
+            options = options;      
+            
+            // document.querySelector(options.where).insertAdjacentHTML(options.position, buildSlider());
+            // document.querySelector(DOMStrings.slide).style.display = 'block';
+            // document.querySelector(DOMStrings.dot).classList.add('active');
+            // addEventListeners();
 
         }
 
-        config = function(where, position){
+        var getSlides = function(){
+            return this.slides;
+        }
+
+        var config = function(where, position){
             console.log(this);
             this.where = where;
             this.position = position;
             console.log(this);
         }
 
+        var doSomething = function(){
+
+            console.log('THIS WILL DO SOMETHING');
+        }
+
         
 
         return {
-            next: next,
-            previous: previous,
-            rewind: rewind,
+            // next: next,
+            // previous: previous,
+            // rewind: rewind,
             // buildSlider: buildSlider,
             init: init,
-            hideAll: hideAll,
-            showSlides: showSlides,
-            config: config
+            doSomething: doSomething,
+            config: config,
+            getSlides: getSlides
+            // hideAll: hideAll,
+            // showSlides: showSlides,
+            // config: config
         }
 
-}([
-    new Slide('img/tank.jpg', 'This is a tank'),
-    new Slide('img/gas-mask-horse.jpg', 'This is a Gas Mask Horse'),
-    new Slide('img/us-military.jpg', 'This the US soldiers'),
-    new Slide('img/logo.svg', 'This thethe logos')
-], '.test-div', 'beforeend'));
+}
+// ([
+//     new Slide('img/tank.jpg', 'This is a tank'),
+//     new Slide('img/gas-mask-horse.jpg', 'This is a Gas Mask Horse'),
+//     new Slide('img/us-military.jpg', 'This the US soldiers'),
+//     new Slide('img/logo.svg', 'This thethe logos')
+// ], '.test-div', 'beforeend'));
