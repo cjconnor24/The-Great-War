@@ -5,65 +5,59 @@ function Slide(img, caption) {
     this.caption = caption;
 }
 
+function Slider(){
+    this.slides = {};
+    this.currentPosition = 0;
+    this.elements = 0;
+    this.DOMStrings = {
+        nextButton: '.next',
+        prevButton: '.prev',
+        container: '.slideshow-container',
+        slide: '.mySlides',
+        dot: '.dot'
+    };
+    this.templates = {
+
+        container: function (slides, controls, dots) {
+            return `<div class="${DOMStrings.container.replace('.', '')}">
+        ${slides}
+        ${controls}
+        ${dots}
+        </div>`;
+        },
+
+        slide: function (slide, n) {
+            return `<div class="${DOMStrings.slide.replace('.', '')} fade">
+        <div class="numbertext">${n + 1} / ${maxElements + 1}</div>
+        <img src="${slide.img}" style="width:100%">
+        <div class="text">${slide.caption}</div>
+    </div>`;
+        },
+
+        controls: function () {
+            return `<a class="${DOMStrings.prevButton.replace('.', '')}" >&#10094;</a>
+        <a class="${DOMStrings.nextButton.replace('.', '')}" >&#10095;</a>`;
+        },
+
+        dots: function () {
+
+            var templateString = '';
+            for (var i = 0; i <= maxElements; i++) {
+                templateString += `<span class="dot" data-slide="${i}"></span>`;
+            }
+
+            return `<div class="dots" style="text-align:center">
+            ${templateString}
+    </div>`;
+        },
+
+    };
+}
+
 
 
 var slider = (function (slideCollection, where, position) {
 
-
-        var slides = slideCollection;
-        var currentPosition = 0;
-        var maxElements = slideCollection.length - 1;
-
-        /**
-         * DOM Strings to Centralise
-         */
-        var DOMStrings = {
-            nextButton: '.next',
-            prevButton: '.prev',
-            container: '.slideshow-container',
-            slide: '.mySlides',
-            dot: '.dot'
-        }
-
-        /**
-         * TEMPLATES FOR UI
-         */
-        var templates = {
-
-            container: function (slides, controls, dots) {
-                return `<div class="${DOMStrings.container.replace('.', '')}">
-            ${slides}
-            ${controls}
-            ${dots}
-            </div>`;
-            },
-
-            slide: function (slide, n) {
-                return `<div class="${DOMStrings.slide.replace('.', '')} fade">
-            <div class="numbertext">${n + 1} / ${maxElements + 1}</div>
-            <img src="${slide.img}" style="width:100%">
-            <div class="text">${slide.caption}</div>
-        </div>`;
-            },
-
-            controls: function () {
-                return `<a class="${DOMStrings.prevButton.replace('.', '')}" >&#10094;</a>
-            <a class="${DOMStrings.nextButton.replace('.', '')}" >&#10095;</a>`;
-            },
-
-            dots: function () {
-
-                var templateString = '';
-                for (var i = 0; i <= maxElements; i++) {
-                    templateString += `<span class="dot" data-slide="${i}"></span>`;
-                }
-
-                return `<div class="dots" style="text-align:center">
-                ${templateString}
-        </div>`;
-            },
-
-        };
 
         addEventListeners = function () {
 

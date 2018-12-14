@@ -147,13 +147,13 @@
         //     console.log(x);
         // })
 
-        // window.addEventListener('click', function (event) {
+        window.addEventListener('click', function (event) {
 
-        //     if(event.target.tagName.toLowerCase() == 'a'){
-        //         event.preventDefault();
-        //         navigation.clickCallback(event,event.target);
-        //     }
-        // });
+            if(event.target.tagName.toLowerCase() == 'a'){
+                event.preventDefault();
+                navigation.clickCallback(event,event.target);
+            }
+        });
 
         // document.querySelectorAll('a').forEach((link) => {
 
