@@ -177,9 +177,12 @@
     <script src="js/lib/menuModule.js"></script>
     <script src="js/lib/router.js"></script>
     <script>
-    let router = new Router('appinstance','/');
-    router.addRoute('^/regiments$','regiments','content/regiments.json');
-    router.addRoute('^/blahs/(.*)$','blahParamRoute','api/blah.php?id=');
+    // let router = new Router('appinstance','/');
+    // router.addRoute('^/regiments$','regiments','content/regiments.json');
+    // router.addRoute('^/blahs/(.*)$','blahParamRoute','api/blah.php?id=');
+    RouterModule.addRoute('^/menu-one$','regiments','content/regiments.json');
+    RouterModule.addRoute('^/menu-two$','blahParamRoute','api/blah.php?id=');
+    RouterModule.addRoute('^/menu-two/(.*)$','blahParamRoute','api/blah.php?id=');    
     </script>
 
 

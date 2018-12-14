@@ -6,7 +6,10 @@ var menuModule = (function () {
     var list = document.querySelector('nav ul');
     var hamburger = document.querySelector('.hamburger');
 
-    // EVEN LISTENERS
+    // STATE
+    var menuItems = [];
+
+    // EVENT LISTENERS
     hamburger.addEventListener('click',toggleUI);
     list.addEventListener('click',function(event){
 
@@ -16,9 +19,10 @@ var menuModule = (function () {
 
     });
 
-    // STATE
-    var menuItems = [];
 
+    /**
+     * Toggle the Menu Visibility
+     */
     function toggleUI(){
         hamburger.classList.toggle('open');
         container.classList.toggle('open');
@@ -48,44 +52,29 @@ var menuModule = (function () {
 
         // GET MENU
         _getMenuItems();
-        // _render();
-
-        // RENDER MENU
 
     }
 
-    // CALL INIT
-    _init();
-
+    
     /**
      * GET MENU ITEMS FROM API
      */
     function _getMenuItems() {
-
+        
         //TODO: GET DATA FROM API
         api.getMenuItems().then((items) => {
             console.log(items);
-
+            
             // var d = JSON.parse(items);
             // console.log(d);
-
+            
             menuItems.push(...items);
             _render();
         });
-
-        // var items = [
-        //     {
-        //         title: "Menu Item One",
-        //         url: "/menu"
-        //     },
-        //     {
-        //         title: "Menu Item Two",
-        //         url: "/another"
-        //     },
-        // ];
-
         
-
     }
 
+    // CALL INIT
+    _init();
+    
 }());
