@@ -134,7 +134,7 @@ header {
         background: rgba(0,0,0,0.95);
         // background: #F00;
         transform:translateX(-100%);
-        transition:0.5s ease-in-out;
+        transition:0.25s ease-in-out;
 
         &.open {
             transform:translateX(0);
