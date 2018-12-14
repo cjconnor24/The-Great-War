@@ -1,14 +1,17 @@
 [
     {
         "id": 1,
-        "url": "/"
+        "url": "/",
+        "title": "Home"
     },
     {
         "id": 2,
-        "url": "/regiments"
+        "url": "/regiments",
+        "title": "Regiments"
     },
     {
         "id": 3,
-        "url": "/xmas-truce"
+        "url": "/xmas-truce",
+        "title": "Christmas Truce"
     }
 ]

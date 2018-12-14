@@ -2,7 +2,7 @@ var menu = (function(){
 
     console.log("Menu Module Has Launched");
 
-    function buildMenu(){
+    function buildMenu(where){
         
         api.getMenu().then(function(menu){
 
@@ -23,18 +23,6 @@ var menu = (function(){
 
             console.log(x);
 
-        //     const dogs = this
-        //     .dogs
-        //     .reduce((html, dog) => html + shared.dogTemplate(dog), '')
-      
-        //   return `
-        //     <ul class="dogs">
-        //       <li>
-        //         ${dogs}
-        //       </li>
-        //     </ul>
-        //   `;
-
         var menu = `
             <ul>
                 <li><a href="/app/index.php">HELLO THERE</a></li>
@@ -49,19 +37,7 @@ var menu = (function(){
 
         
 
-    }    
-
-    // function getMenu(){
-
-    //     // api.getMenu().then((menu)=>{
-    //     //     // this.menuStructure = menu;
-    //     //     console.log(menu);
-    //     //     return menu;
-    //     // });
-
-    //     return api.getMenu();
-
-    // }
+    }
 
     return {
         buildMenu: buildMenu,
