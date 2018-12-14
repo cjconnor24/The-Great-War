@@ -8,6 +8,13 @@ var menuModule = (function () {
 
     // EVEN LISTENERS
     hamburger.addEventListener('click',toggleUI);
+    list.addEventListener('click',function(event){
+
+        if(event.target.tagName.toLowerCase() == 'a'){
+            toggleUI();
+        }
+
+    });
 
     // STATE
     var menuItems = [];
@@ -41,7 +48,7 @@ var menuModule = (function () {
 
         // GET MENU
         _getMenuItems();
-        _render();
+        // _render();
 
         // RENDER MENU
 
@@ -56,20 +63,28 @@ var menuModule = (function () {
     function _getMenuItems() {
 
         //TODO: GET DATA FROM API
+        api.getMenuItems().then((items) => {
+            console.log(items);
 
-        var items = [
-            {
-                title: "Menu Item One",
-                url: "/menu"
-            },
-            {
-                title: "Menu Item Two",
-                url: "/another"
-            },
-        ];
+            // var d = JSON.parse(items);
+            // console.log(d);
+
+            menuItems.push(...items);
+            _render();
+        });
+
+        // var items = [
+        //     {
+        //         title: "Menu Item One",
+        //         url: "/menu"
+        //     },
+        //     {
+        //         title: "Menu Item Two",
+        //         url: "/another"
+        //     },
+        // ];
 
         
-        menuItems.push(...items);
 
     }
 

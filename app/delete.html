@@ -177,6 +177,13 @@
             <a href="#/regiment/123">regiment/123</a>
         </li>
         <li>
+                <a href="#/regiment/123">regiment/123</a>
+                <ul>
+                    <li><a href="#/pages/xmas-truce">XMAS TRUCE</a></li>
+                    <li><a href="#/pages/aviation">XMAS TRUCE</a></li>
+                </ul>
+            </li>
+        <li>
             <a href="#/regiments">regiments</a>
         </li>
         <li>
@@ -211,17 +218,50 @@
 
 
 
-    <script src="js/lib/api.js"></script>
-    <script src="js/lib/menuBuilder.js"></script>
-    <script src="js/lib/sliderModule.js"></script>
+    <!-- <script src="js/lib/api.js"></script> -->
+    <!-- <script src="js/lib/menuBuilder.js"></script> -->
+    <!-- <script src="js/lib/sliderModule.js"></script> -->
+    <!-- <script src="js/lib/sliderCLASS.js"></script>
+    <script>
+    
+        var tempSL = new Slider();
+
+        tempSL.doSomething();
+        tempSL.init(        [
+    new Slide('img/tank.jpg', 'This is a tank'),
+    new Slide('img/gas-mask-horse.jpg', 'This is a Gas Mask Horse'),
+    new Slide('img/us-military.jpg', 'This the US soldiers'),
+    new Slide('img/logo.svg', 'This thethe logos')
+],{
+    where: '.test-div',
+    position: 'beforeend'
+});
+console.log('These are the slides');
+// console.log('These are the slides', tempSL.getSlides());
+
+//         tempSL.init(
+//             [
+//     new Slide('img/tank.jpg', 'This is a tank'),
+//     new Slide('img/gas-mask-horse.jpg', 'This is a Gas Mask Horse'),
+//     new Slide('img/us-military.jpg', 'This the US soldiers'),
+//     new Slide('img/logo.svg', 'This thethe logos')
+// ],{
+//     where: ".test-div",
+//     position: "beforeend"
+// });
+
+
+
+    </script> -->
     <script src="js/lib/router.js"></script>
     <script>
 
         var router = new Router('.app','/');
-        router.addRoute('^/$','home');
-        router.addRoute('^/regiments$','regiments');
-        router.addRoute('^/regiment/(.*)$','regiment');
-        router.addRoute('^/xmas-truce$','truce');
+        router.addRoute('^/$','home','index.php');
+        router.addRoute('^/pages/(.*)$','pages','page.php?id=');
+        router.addRoute('^/regiments$','regiments','regiments.php');
+        router.addRoute('^/regiment/(.*)$','regiment','regiments.php?id=');
+        router.addRoute('^/xmas-truce$','truce.html');
 
         // slider.setup('.test-div','beforeend');
         // slide.addSlide(new Slide('img/tank.jpg', 'This is a tank'));

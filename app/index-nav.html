@@ -41,11 +41,7 @@
             <h1>Main Menu</h1>
 
             <ul>
-                <li><a href="/causes-of-war">Causes of the War</a></li>
-                <li><a href="/aviation-during-war">Aviation During the War</a></li>
-                <li><a href="#">Something Else</a></li>
-                <li><a href="#">Another</a></li>
-                <li><a href="#">Excellent Article</a></li>
+                <li><a href="#/">Loading... <i class="fa-spinner fas fa-sync fa-spin"></i> </a></li>
             </ul>
 
         </nav>
@@ -68,84 +64,8 @@
 
         </div>
 
-        <div class="test-div"></div>
-
-        <div class="row grid">
-
-            <!-- <div class="element" data-url=""> -->
-                <a href="#" class="element">
-
-                <div class="content">
-                    <h2>Technology</h2>
-                    <p>How tecnology incluenced the war</p>
-                </div>
-                <div class="img-placeholder">
-                    <img src="img/tank.jpg" alt="Tank Image">
-                </div>
-            </a>
-            <!-- </div> -->
-
-            <div class="element">
-
-                <div class="content">
-                    <h2>Uncle Sam</h2>
-                    <p>How America is Great</p>
-                </div>
-
-                <div class="img-placeholder">
-                    <img src="img/us-military.jpg" alt="US Military">
-                </div>
-            </div>
-
-            <div class="element">
-
-                <div class="content">
-                    <h2>Animals During the War</h2>
-                    <p>Why man got Gas Mask and Horse Didn't</p>
-                </div>
-
-                <div class="img-placeholder">
-                    <img src="img/gas-mask-horse.jpg" alt="US Military">
-                </div>
-
-            </div>
-
-            <div class="element">
-                <div class="content">
-                    <h2>Technology</h2>
-                    <p>How tecnology incluenced the war</p>
-                </div>
-                <div class="img-placeholder">
-                    <img src="img/tank.jpg" alt="Tank Image">
-                </div>
-            </div>
-
-            <div class="element">
-
-                <div class="content">
-                    <h2>Animals During the War</h2>
-                    <p>Why man got Gas Mask and Horse Didn't</p>
-                </div>
-
-                <div class="img-placeholder">
-                    <img src="img/gas-mask-horse.jpg" alt="US Military">
-                </div>
-
-            </div>
-
-            <div class="element">
-
-                <div class="content">
-                    <h2>Uncle Sam</h2>
-                    <p>How America is Great</p>
-                </div>
-
-                <div class="img-placeholder">
-                    <img src="img/us-military.jpg" alt="US Military">
-                </div>
-            </div>
-
-
+        <div class="test-div">
+            testDIV
         </div>
 
         <div class="hero">
@@ -253,57 +173,13 @@
 
 
     </div>
-
+    <script src="js/lib/api.js"></script>
+    <script src="js/lib/menuModule.js"></script>
+    <script src="js/lib/router.js"></script>
     <script>
-        document.querySelector('.hamburger').addEventListener('click', function (e) {
-
-            this.classList.toggle('open');
-            document.getElementsByTagName('nav')[0].classList.toggle('open');
-
-        });
-
-    </script>
-    <script src="js/navigation.js"></script>
-    <script src="js/lib/sliderModule.js"></script>
-    <script src="js/lib/templates.js"></script>
-    <script>
-
-        var gridData = [
-            {
-                title: "Technology Changed",
-                subtitle: "How Technology Changed The War",
-                url: "img/tank.jpg"
-            },
-            {
-                title: "Uncle Same",
-                subtitle: "How America Is Great",
-                url: "img/us-military.jpg"
-            },
-            {
-                title: "Animals During the War",
-                subtitle: "Why didn't we make horsey gas masks",
-                url: "img/gas-mask-horse.jpg"
-            }
-        ];
-
-        var string = gridData.reduce((x, y) => {
-            return x + templates.gridItem(y);
-        },'');
-
-        console.log(string);
-
-            document.querySelector('.row.grid').insertAdjacentHTML('beforeend', string);
-
-
-
-        navigation.init();
-        window.addEventListener('click', function (event) {
-
-            if (event.target.tagName.toLowerCase() == 'a') {
-                event.preventDefault();
-                navigation.clickCallback(event, event.target);
-            }
-        });
+    let router = new Router('appinstance','/');
+    router.addRoute('^/regiments$','regiments','content/regiments.json');
+    router.addRoute('^/blahs/(.*)$','blahParamRoute','api/blah.php?id=');
     </script>
 
 
