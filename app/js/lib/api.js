@@ -1,6 +1,6 @@
 var api = (function () {
 
-    var CONST_API_URL = 'http://localhost:8080/';
+    var CONST_API_URL = 'http://10.0.0.45:8080/';
     var cache = {};
 
     function getMenuItems(){

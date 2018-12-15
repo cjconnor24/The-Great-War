@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Great War Interactive Guide</title>
     <link rel="shortcut icon" href="about:blank">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.3/mustache.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
@@ -25,7 +26,7 @@
             </div>
 
             <div class="logo">
-                <a href="#">
+                <a href="#/">
                     <p>
                         THE <span>GREAT</span> WAR
                     </p>
@@ -66,12 +67,6 @@
         </div>
 
         <div class="test-div" id="content-area">
-
-                <audio controls autoplay>
-
-                        <source src="media/audio/dulce-et-decorum-est.mp3" type="audio/mpeg">
-                        Your browser does not support the audio tag.
-                    </audio>
 
             <div class="spinner">
                 <img src="img/poppy.png" class="poppy" alt="POPPY">
@@ -188,7 +183,7 @@
     <!-- API MODULE -->
     <script src="js/lib/api.js"></script>
     <!-- MENU MODULE - DONE -->
-    <script src="js/lib/menuModule.js"></script>
+    <script src="js/lib/MenuModule.js"></script>
     <!-- ROUTER - NEEDS TO PASS TO CONTENT -->
     <script src="js/lib/router.js"></script>
 

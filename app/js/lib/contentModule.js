@@ -31,32 +31,18 @@ var ContentModule = (function () {
         console.log('CONTENT MODULE: ', routeData.route.dataUrl + routeData.params);
     }
 
-    function getData(url) {
+    async function getData(url) {
 
-        api.getJson('http://localhost:8080/pages-api.php?slug='+url)
-            .then((module) => {
+        // var data = await api.getJson('http://10.0.0.45:8080/pages-api.php?slug='+url);
+        // var template = await api.getText('templates/page-template.mustache.html');
+        // var renderedTemplate = Mustache.render(template,data[0]);
 
+        var data = await api.getJson('http://10.0.0.45:8080/pages-api.php');
+        var template = await api.getText('templates/grid-template.mustache.html');
+        console.log(data[0]);
+        var renderedTemplate = Mustache.render(template,{elements: data});
 
-                console.log('THIS IS THE MODULE', module);
-
-                module = module[0];
-
-                var template = `
-                <h1>${module.title}</h1>
-                <h2>${module.subtitle}</h2>
-
-                <p>${module.content}</p>
-                `;
-
-                container.innerHTML = template;
-
-
-                // MODULE JS LOADER
-                // var moduleJS = document.createElement("script");
-                // moduleJS.src = "js/lib/mediaModule.js";
-                // container.insertAdjacentElement('afterend', moduleJS);
-
-            });
+        container.innerHTML = renderedTemplate;
 
     }
 
