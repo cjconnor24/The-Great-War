@@ -9,6 +9,12 @@ var api = (function () {
 
     }
 
+    function getGrid(){
+
+        return fetchJSON(CONST_API_URL + 'pages-api.php');
+
+    }    
+
     function getModule(localPath){
         return fetchTEXT(localPath);
     }
@@ -62,7 +68,8 @@ var api = (function () {
         getJson: fetchJSON,
         getText: fetchTEXT,
         getMenuItems: getMenuItems,
-        getModule: getModule
+        getModule: getModule,
+        getGrid: getGrid
     }
 
 }());

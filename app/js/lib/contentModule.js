@@ -18,7 +18,27 @@ var ContentModule = (function () {
 
             console.log('CONTENT MODULE: ', routeData);
             console.log(routeData.params);
-            getData(routeData.params[1]);
+
+            if(routeData.route.name=="pages"){
+
+                getPage(routeData.params[1]);
+            }
+
+            if(routeData.route.name=="grid"){
+                getGrid(routeData);
+            }
+
+    }
+
+
+    async function getGrid(routeData){
+
+        var data = await api.getGrid();
+        console.log(data);
+        var template = await api.getText('templates/grid-template.mustache.html');
+        var renderedTemplate = Mustache.render(template,{elements: data});
+        console.log(renderedTemplate);
+        container.innerHTML = renderedTemplate;
 
     }
 
@@ -37,11 +57,11 @@ var ContentModule = (function () {
         var returnSplit = "%return%";
 
         // REPLACE HEADINGS
-        // console.log(newContent);
-        // newContent = content.replace(/\#(.*?)(%return%)/gi,"<h1>$1</h1>$2");
         
         // SPLIT RETURNS
         content.content.split(returnSplit).forEach((row) => {
+
+            
 
             if(row.match(/^#/)){
 
@@ -53,6 +73,8 @@ var ContentModule = (function () {
             }
 
         });
+
+        newContent.body = newContent.body.replace(/%img=(.*?)%/gi,'<img src="img/$1" alt="$1"/>')
 
         newContent['firstPara'] = newContent.body.split('</p>')[0];
         newContent['body'] = newContent['body'].replace(newContent['firstPara'],"");
@@ -97,7 +119,7 @@ var ContentModule = (function () {
         console.log('CONTENT MODULE: ', routeData.route.dataUrl + routeData.params);
     }
 
-    async function getData(url) {
+    async function getPage(url) {
 
         console.log('URL IS',url);
         var data = await api.getJson('http://10.0.0.45:8080/pages-api.php?slug='+url);
@@ -109,11 +131,6 @@ var ContentModule = (function () {
         
         var template = await api.getText('templates/page-template.mustache.html');
         var renderedTemplate = Mustache.render(template,parseData);
-
-        // var data = await api.getJson('http://10.0.0.45:8080/pages-api.php');
-        // var template = await api.getText('templates/grid-template.mustache.html');
-        // console.log(data[0]);
-        // var renderedTemplate = Mustache.render(template,{elements: data});
 
         container.innerHTML = renderedTemplate;
 

@@ -2,7 +2,7 @@
 
 .page-hero {
     width:100%;
-    max-height:300px;
+    max-height:calc(60vh - 100px);
     overflow: hidden;
 
     img {
@@ -51,6 +51,10 @@
                 flex-basis: 48%;
                 // flex:1 2;
                 // width:100px;
+                img {
+                    width:100%;
+                    margin:0 0 30px 0;
+                }
             }
         }
     }

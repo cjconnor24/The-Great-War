@@ -76,7 +76,7 @@
     <script>
         
         // HOME PAGE ROUTER
-        RouterModule.addRoute('^/$', 'Welcome', {type: 'api', endpoint:'HOMEROUTE-api.php',template: null});
+        RouterModule.addRoute('^/$', 'grid', {type: 'json', endpoint:'pages-api.php',template: 'grid-template'});
 
         // HARD CODED ROUTES
         RouterModule.addRoute('^/module-two/$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
