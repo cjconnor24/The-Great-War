@@ -177,8 +177,18 @@ header {
                     font-size:2em;
                     padding:1em 0;
                     transition:0.5s;
-                    &:hover {
+                    &:hover,
+                    &.active {
                         color:#FFF;
+                    }
+                    &.active {
+                        cursor: default;
+                        &::after {
+                            content:' X';
+                            position: absolute;
+                            left:0px;
+
+                        }
                     }
                 }
     
