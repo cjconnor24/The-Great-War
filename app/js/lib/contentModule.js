@@ -24,7 +24,16 @@ var ContentModule = (function () {
 
     function parseContent(content){
 
-        var newContent = '';
+        var newContent = {
+            title:content.title,
+            subtitle:content.subtitle,
+            img:content.img,
+            body:'',
+            firstPara:'',
+            col1:'',
+            col2:''
+        };
+
         var returnSplit = "%return%";
 
         // REPLACE HEADINGS
@@ -32,20 +41,34 @@ var ContentModule = (function () {
         // newContent = content.replace(/\#(.*?)(%return%)/gi,"<h1>$1</h1>$2");
         
         // SPLIT RETURNS
-        content.split(returnSplit).forEach((row) => {
+        content.content.split(returnSplit).forEach((row) => {
 
             if(row.match(/^#/)){
 
-                newContent += row.replace(/^#(.*)/,"<h1>$1</h1>");
+                newContent['body'] += row.replace(/^#(.*)/,"<h2>$1</h2>");
 
             } else {
-                newContent += `<p>${row}</p>`;
+                
+                newContent['body'] += `<p>${row}</p>`;
             }
 
         });
 
-        console.log(newContent);
+        newContent['firstPara'] = newContent.body.split('</p>')[0];
+        newContent['body'] = newContent['body'].replace(newContent['firstPara'],"");
 
+        if(newContent.body.length > 1000){
+
+            var halfway = newContent.body.indexOf('<p>',(newContent.body.length / 2));
+            newContent.col1 = newContent.body.substring(0,halfway);
+            newContent.col2 = newContent.body.substring(halfway);
+
+        }
+
+        
+        
+
+        // return newContent;
         return newContent;
 
 
@@ -81,10 +104,11 @@ var ContentModule = (function () {
 
         console.log(data);
         
-        data[0].content = parseContent(data[0].content);
+        var parseData = parseContent(data[0]);
+        console.log(parseData);
         
         var template = await api.getText('templates/page-template.mustache.html');
-        var renderedTemplate = Mustache.render(template,data[0]);
+        var renderedTemplate = Mustache.render(template,parseData);
 
         // var data = await api.getJson('http://10.0.0.45:8080/pages-api.php');
         // var template = await api.getText('templates/grid-template.mustache.html');
