@@ -1,0 +1,18 @@
+<div class="row grid">
+
+    {{#elements}}
+    <a href="#" class="element">
+
+        <div class="content">
+            <h2>{{title}}</h2>
+            <p>{{subtitle}}</p>
+        </div>
+        <div class="img-placeholder">
+            {{#img}}
+            <img src="img/{{img}}" alt="{{subtitle}}">
+            {{/img}}
+        </div>
+    </a>
+    {{/elements}}
+    
+</div>
