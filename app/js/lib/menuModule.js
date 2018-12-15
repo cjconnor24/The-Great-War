@@ -74,6 +74,8 @@ var menuModule = (function () {
         
     }
 
+    // TODO: BUILD ROUTER ROUTES FROM MENU?
+
     // CALL INIT
     _init();
     

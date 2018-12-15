@@ -18,12 +18,17 @@ var RouterModule = (function () {
     }
 
     function hashChange() {
-            var url = window.location.hash.substring(1);
+        
+        // GET URL AFTER HASH
+        var url = window.location.hash.substring(1);
+            
             // IF NO URL, SET DEFAULT
             if (!url) {
                 url = defaultRoute;
                 window.location.hash = '#' + url;
             }
+
+            // GET BACK REGEX MATCHES
             var r = routes.filter(function (route) {
                 return url.match(new RegExp(route.url, 'gi'));
             });
@@ -33,10 +38,16 @@ var RouterModule = (function () {
         
                 var route = r[0];
                 params = new RegExp(route.url, 'gi').exec(url).slice(1);
-                console.log(route.name, params);
+                console.log("ROUTE MODULE:", route.name, route.url, route.dataUrl, params);
+
+
+
+                // CONTENT MODULE
+                ContentModule.init({route: route,
+                params: params});
         
             } else {
-                console.log('LOAD DEFAULT?');
+                console.log('Page doesnt exists?');
             }
         
         };

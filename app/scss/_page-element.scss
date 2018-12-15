@@ -46,6 +46,24 @@
     
 }
 
+@keyframes spinning {
+    0% {
+        transform:rotate(0);
+    }
+    100% {
+        transform:rotate(1turn);
+    }
+}
+.spinner {
+    width:100%;
+    /* display:flex; */
+    text-align: center;
+    .poppy {
+        max-width:200px;
+        animation:spinning 3s infinite;
+    }
+}
+
 // SPLIT THE COLUMNS WHEN TOO SMALL
 @media only screen and (max-width:800px){
 

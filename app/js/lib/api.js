@@ -9,6 +9,10 @@ var api = (function () {
 
     }
 
+    function getModule(localPath){
+        return fetchTEXT(localPath);
+    }
+
     /**
      * Perform fetch and return to json
      * @param {String} url URL to get
@@ -30,9 +34,28 @@ var api = (function () {
             });
     }
 
+    function fetchTEXT(url, options = {}) {
+
+        //
+        if (cache[url]) {
+            console.log('data was cached');
+            return Promise.resolve(cache[url]);
+        }
+
+        return fetch(url)
+            .then(res => res.text())
+            .then(txt => {
+                cache[url] = txt;
+                return txt;
+            });
+    }    
+
     return {
         get: fetchJSON,
-        getMenuItems: getMenuItems
+        getJson: fetchJSON,
+        getText: fetchTEXT,
+        getMenuItems: getMenuItems,
+        getModule: getModule
     }
 
 }());

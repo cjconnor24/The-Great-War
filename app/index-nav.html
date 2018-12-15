@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Great War Interactive Guide</title>
+    <link rel="shortcut icon" href="about:blank">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
@@ -64,8 +65,13 @@
 
         </div>
 
-        <div class="test-div">
-            testDIV
+        <div class="test-div" id="content-area">
+
+            <div class="spinner">
+                <img src="img/poppy.png" class="poppy" alt="POPPY">
+            </div>
+
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/0BLayTZIgvY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
         </div>
 
         <div class="hero">
@@ -173,16 +179,26 @@
 
 
     </div>
+    <!-- API MODULE -->
     <script src="js/lib/api.js"></script>
+    <!-- MENU MODULE - DONE -->
     <script src="js/lib/menuModule.js"></script>
+    <!-- ROUTER - NEEDS TO PASS TO CONTENT -->
     <script src="js/lib/router.js"></script>
+
+    <!-- CONTENT MODULE -->
+    <script src="js/lib/contentModule.js"></script>
     <script>
-    // let router = new Router('appinstance','/');
-    // router.addRoute('^/regiments$','regiments','content/regiments.json');
-    // router.addRoute('^/blahs/(.*)$','blahParamRoute','api/blah.php?id=');
-    RouterModule.addRoute('^/menu-one$','regiments','content/regiments.json');
-    RouterModule.addRoute('^/menu-two$','blahParamRoute','api/blah.php?id=');
-    RouterModule.addRoute('^/menu-two/(.*)$','blahParamRoute','api/blah.php?id=');    
+        // let router = new Router('appinstance','/');
+        // router.addRoute('^/regiments$','regiments','content/regiments.json');
+        // router.addRoute('^/blahs/(.*)$','blahParamRoute','api/blah.php?id=');
+        // REGEX - NAME - DATA - TYPE (local or API)
+        RouterModule.addRoute('^/$', 'home', 'content/homepage.html');
+        RouterModule.addRoute('^/menu-one$', 'regiments', 'content/regiments.json');
+        RouterModule.addRoute('^/menu-two$', 'blahParamRoute', 'api/blah.php?id=');
+        RouterModule.addRoute('^/menu-two/(.*?)$', 'blahParamRoute', 'api/blah.php?id=');
+        RouterModule.addRoute('^/menu-two/(.*?)/what-about-this$', 'DoubleMatcher', 'api/blah.php?id=');
+
     </script>
 
 
