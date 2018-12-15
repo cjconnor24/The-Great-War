@@ -99,7 +99,7 @@ gulp.task('useref', function(){
   // return gulp.src(['app/*.php','app/includes/*.php'])
     .pipe(useref())
     // Minifies only if it's a JavaScript file
-    .pipe(gulpIf('*.js', uglify()))
+    // .pipe(gulpIf('*.js', uglify()))
     .pipe(gulp.dest('dist'))
 });
 

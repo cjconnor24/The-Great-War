@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *, html {
+        padding:0;margin:0;
+    }
+    * {
+        box-sizing:border-box;
+    }
+    body {
+        font-size:18px;
+        font-family:Arial, Helvetica, sans-serif;
+    
+    }
+    .container {
+        max-width:1024px;
+        margin:0 auto;
+    }
+    form {
+        margin:30px 0 30px 0;
+    }
+    input[type=text] {
+        border:1px solid #CCC;
+        padding:10px 20px;
+        width:100%;
+        border-radius:3px;
+    }
+    textarea {
+        width:100%;
+        border:1px solid #CCC;
+        border-radius:3px;
+    }
+    button[type=submit], button {
+        display:inline-block;
+        padding:10px 20px;
+        border:none;
+        border-radius:3px;
+        background: lightblue;
+    }
+    .form-group{
+        margin:0 0 1em 0;
+    }
+    .form-group label {
+        display:block;
+        font-weight:bold;
+    }
+
+    ul {
+        list-style:none;
+
+    }
+    ul li {
+        display:block;
+        padding:1em;
+    }
+    ul li:nth-child(even) {
+        background: #CCC;
+    }
+    ul li:nth-child(odd) {
+        background: rgba(0,0,0,0.2);
+    }
+    ul li button {
+        display:block;
+        width:100%;
+        margin:0 0 10px 0;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Admin</h1>
+        <p>This is the admin page</p>
+
+        <div id="page-module">
+            <ul></ul>
+
+            <form action="">
+
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="subtitle">Subtitle</label>
+                    <input type="text" name="subtitle" value="">
+                </div>
+                <div class="form-group">
+                    <label for="contect">Content</label>
+                    <textarea id="" cols="30" rows="10" name="content"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="img">Image URL</label>
+                    <input type="text" name="img" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="active">Published?</label>
+                    Yes <input type="radio" value="1" name="active" checked>
+                    No <input type="radio" value="0" name="active">
+                </div>
+
+                <button type="submit">Create Page</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        var PageModule = (function () {
+
+
+            // DOM CONTAINERS
+            var container = document.querySelector('#page-module');
+            var list = document.querySelector('#page-module ul');
+            var button = document.querySelector('#page-module button[type=submit]')
+            var form = document.querySelector('#page-module form');
+            var allowedFields = ['text', 'email', 'radio', 'textarea'];
+
+            // EVENT LISTENERS
+            button.addEventListener('click', addPage);
+            list.addEventListener('click', manageButtons);
+
+            // STATE
+            var pages = [];
+
+
+            // UI METHODS
+            function _render() {
+
+                console.log(pages);
+
+                list.innerHTML = pages.reduce((html, page, index) => {
+                    return html + `<li data-page-index="${index}">${page.title} <button>delete</button> <button>edit</button></li>`;
+                }, '');
+
+            }
+
+            function init() {
+                loadPages();
+            }
+
+            init();
+
+            function clearform() {
+                for (var i = 0; i < form.elements.length; i++) {
+
+                    var field = form.elements[i];
+                    if (field.type == 'text' || field.type == 'textarea') {
+                        field.value = '';
+                    }
+
+                }
+
+                form.elements[0].focus();
+
+            }
+
+
+            // FUNCTIONAL METHODS
+            function addPage(event) {
+
+                event.preventDefault();
+                var pageObject = {};
+
+                for (var i = 0; i < form.elements.length; i++) {
+
+                    var field = form.elements[i];
+                    // console.log(formFields.elements[i]);
+                    if (allowedFields.indexOf(field.type) !== -1) {
+
+                        // CHECK THE RADIO BUTTON
+                        if (field.type == 'radio') {
+
+                            (field.checked ? pageObject[field.name] = field.value : '');
+
+                        } else {
+
+                            console.log(field.name);
+
+                            pageObject[field.name] = (field.name == 'content' ? encodeContent(field.value) : field.value);
+
+                        }
+
+
+
+                    }
+                }
+
+                savePage(pageObject);
+
+                pages.push(pageObject);
+                clearform();
+                _render();
+
+            }
+
+            function manageButtons(event) {
+
+
+                if (event.target.innerHTML == "delete") {
+
+                    deletePage(event);
+
+                } else if (event.target.innerHTML === "edit") {
+
+                    editPage(event);
+
+                }
+
+
+            }
+
+
+            function encodeContent(content) {
+
+                // TRIM RETURNS
+                var newContent = content.replace(/\n+/gi, '%return%');
+                return newContent;
+
+            }
+
+            function decodeContent(content) {
+                var newContent = content.replace(/%return%/gi, '\n\n');
+                return newContent;
+            }
+
+            function deletePage(event) {
+
+                var listIndex = event.target.closest('li').getAttribute('data-page-index');
+                console.log(listIndex);
+                console.log(event.target);
+                pages.splice(listIndex, 1);
+                _render();
+
+            }
+
+            function _getSlug(title) {
+
+                return title.replace(/[\"\@\-\'\.\!\s\?\//]+/gi, '-').toLowerCase();
+
+            }
+
+            function editPage(event) {
+
+                var listIndex = event.target.closest('li').getAttribute('data-page-index');
+
+                var page = pages[listIndex];
+
+                for (var i = 0; i < form.elements.length; i++) {
+
+                    var field = form.elements[i];
+
+                    if (allowedFields.indexOf(field.type) !== -1) {
+
+
+
+                        field.value = (field.name == 'content' ? decodeContent(page[field.name]) : page[field.name]);
+
+                    }
+
+
+                }
+
+
+            }
+
+            async function loadPages() {
+
+                var data = await fetch('http://10.0.0.45:8080/admin-pages-api.php');
+                var json = await data.json();
+                pages = json;
+                _render();
+
+            }
+
+            function savePage(page) {
+
+                console.log('THE PAGE is',page);
+
+                var formData = new FormData();
+
+                for(var k in page){
+                    formData.append('a', 'vsada');
+                }
+
+                console.log(formData);
+
+                var save = fetch('http://10.0.0.45:8080/admin-pages-api.php?mode=insert', {
+
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(page), // body data type must match "Content-Type" header
+                    })
+                    .then((result) => {
+                        return result.json();
+                    })
+                    .then((data) => {
+                        console.log('THE FETCH RESULT IS',data);
+                    });
+
+
+            }
+
+            return {
+                init: init
+            }
+
+
+
+        }());
+    </script>
+
+</body>
+
+</html>
