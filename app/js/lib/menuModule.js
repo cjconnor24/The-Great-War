@@ -50,7 +50,7 @@ var MenuModule = (function () {
      */
     var template = function(items){
         return items.reduce((html, item, index) => {
-            return html + `<li><a href="#${item.url}">${item.title}</a></li>`;
+            return html + `<li><a href="#/${item.slug}">${item.title}</a></li>`;
         },'' )
     };
 

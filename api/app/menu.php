@@ -1,26 +1,22 @@
 <?php
-header("Content-type: application/json");
 header("Access-Control-Allow-Origin: *");
 
-$menu = [
-    [
-    'title' => 'Chrismas Truce',
-    'url' => '/christmas-truce'
-    ],
-    [
-        'title' => 'Another One',
-        'url' => '/another-one'
-        ],
-        [
-            'title' => 'Menu Two',
-            'url' => '/module-two/'
-        ],
-        [
-            'title' => 'Menu Three',
-            'url' => '/module-two/testing-this'
-            ]
-        ];
+include('includes/db-connect.php');
+
+if($_GET['slug']){
+    $query = $conn->prepare("SELECT * FROM pages WHERE slug = ?");
+    $query->bindParam(1,$_GET['slug'],PDO::PARAM_STR,65);
+} else {
+    $query = $conn->prepare("SELECT slug, title FROM pages WHERE parentID IS NULL");
+    
+
+}
+
+$query->execute();
+
+$results = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
-sleep(3);
-echo json_encode($menu);
+header("Content-type: application/json");
+header("Content-type: application/json");
+echo json_encode($results);

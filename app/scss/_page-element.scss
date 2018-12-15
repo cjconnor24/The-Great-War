@@ -1,3 +1,15 @@
+
+
+.page-hero {
+    width:100%;
+    max-height:300px;
+    overflow: hidden;
+
+    img {
+        width: 100%;;
+    }
+
+}
 .page-element {
     max-width:1280px;
     margin:0 auto;
@@ -56,10 +68,17 @@
 }
 .spinner {
     width:100%;
-    /* display:flex; */
+    height:calc(100vh - 100px);
+
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     .poppy {
         max-width:200px;
+        max-height: 200px;
         animation:spinning 3s infinite;
     }
 }

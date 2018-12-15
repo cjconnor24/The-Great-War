@@ -38,10 +38,11 @@ var RouterModule = (function () {
             if (r.length > 0) {
         
                 var route = r[0];
-                params = new RegExp(route.url, 'gi').exec(url).slice(1);
+                // params = new RegExp(route.url, 'gi').exec(url).slice(1);
+                params = new RegExp(route.url, 'gi').exec(url);
                 console.log("ROUTE MODULE:", route.name, route.url, route.dataUrl, params);
                 
-                document.title = `${route.name} - ${siteName}`;
+                // document.title = `${route.name} - ${siteName}`;
 
 
                 // CONTENT MODULE

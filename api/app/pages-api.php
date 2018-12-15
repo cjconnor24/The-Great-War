@@ -7,7 +7,7 @@ if($_GET['slug']){
     $query = $conn->prepare("SELECT * FROM pages WHERE slug = ?");
     $query->bindParam(1,$_GET['slug'],PDO::PARAM_STR,65);
 } else {
-    $query = $conn->prepare("SELECT slug, title, subtitle, img FROM pages WHERE parentID IS NULL");
+    $query = $conn->prepare("SELECT slug, title, subtitle, img, parentID FROM pages");
     
 
 }

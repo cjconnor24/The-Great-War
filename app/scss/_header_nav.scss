@@ -183,12 +183,6 @@ header {
                     }
                     &.active {
                         cursor: default;
-                        &::after {
-                            content:' X';
-                            position: absolute;
-                            left:0px;
-
-                        }
                     }
                 }
     

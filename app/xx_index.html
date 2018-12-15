@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Great War Interactive Guide</title>
-    <link rel="shortcut icon" href="about:blank">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.3/mustache.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
@@ -26,7 +24,7 @@
             </div>
 
             <div class="logo">
-                <a href="#/">
+                <a href="#">
                     <p>
                         THE <span>GREAT</span> WAR
                     </p>
@@ -43,7 +41,11 @@
             <h1>Main Menu</h1>
 
             <ul>
-                <li><a href="#/">Loading... <i class="fa-spinner fas fa-sync fa-spin"></i> </a></li>
+                <li><a href="/causes-of-war">Causes of the War</a></li>
+                <li><a href="/aviation-during-war">Aviation During the War</a></li>
+                <li><a href="#">Something Else</a></li>
+                <li><a href="#">Another</a></li>
+                <li><a href="#">Excellent Article</a></li>
             </ul>
 
         </nav>
@@ -66,13 +68,84 @@
 
         </div>
 
-        <div class="test-div" id="content-area">
+        <div class="test-div"></div>
 
-            <div class="spinner">
-                <img src="img/poppy.png" class="poppy" alt="POPPY">
+        <div class="row grid">
+
+            <!-- <div class="element" data-url=""> -->
+                <a href="#" class="element">
+
+                <div class="content">
+                    <h2>Technology</h2>
+                    <p>How tecnology incluenced the war</p>
+                </div>
+                <div class="img-placeholder">
+                    <img src="img/tank.jpg" alt="Tank Image">
+                </div>
+            </a>
+            <!-- </div> -->
+
+            <div class="element">
+
+                <div class="content">
+                    <h2>Uncle Sam</h2>
+                    <p>How America is Great</p>
+                </div>
+
+                <div class="img-placeholder">
+                    <img src="img/us-military.jpg" alt="US Military">
+                </div>
             </div>
 
-            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/0BLayTZIgvY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <div class="element">
+
+                <div class="content">
+                    <h2>Animals During the War</h2>
+                    <p>Why man got Gas Mask and Horse Didn't</p>
+                </div>
+
+                <div class="img-placeholder">
+                    <img src="img/gas-mask-horse.jpg" alt="US Military">
+                </div>
+
+            </div>
+
+            <div class="element">
+                <div class="content">
+                    <h2>Technology</h2>
+                    <p>How tecnology incluenced the war</p>
+                </div>
+                <div class="img-placeholder">
+                    <img src="img/tank.jpg" alt="Tank Image">
+                </div>
+            </div>
+
+            <div class="element">
+
+                <div class="content">
+                    <h2>Animals During the War</h2>
+                    <p>Why man got Gas Mask and Horse Didn't</p>
+                </div>
+
+                <div class="img-placeholder">
+                    <img src="img/gas-mask-horse.jpg" alt="US Military">
+                </div>
+
+            </div>
+
+            <div class="element">
+
+                <div class="content">
+                    <h2>Uncle Sam</h2>
+                    <p>How America is Great</p>
+                </div>
+
+                <div class="img-placeholder">
+                    <img src="img/us-military.jpg" alt="US Military">
+                </div>
+            </div>
+
+
         </div>
 
         <div class="hero">
@@ -136,6 +209,8 @@
                             </script> -->
                         </p>
 
+                        <h3>Heading</h3>
+
                         <p> Column One Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error, cupiditate. Hic
                             harum
                             quaerat asperiores sed provident aliquam dignissimos sit, iusto incidunt! Optio iure nemo
@@ -180,29 +255,57 @@
 
 
     </div>
-    <!-- API MODULE -->
-    <script src="js/lib/api.js"></script>
-    <!-- MENU MODULE - DONE -->
-    <script src="js/lib/MenuModule.js"></script>
-    <!-- ROUTER - NEEDS TO PASS TO CONTENT -->
-    <script src="js/lib/router.js"></script>
 
-    <!-- CONTENT MODULE -->
-    <script src="js/lib/contentModule.js"></script>
     <script>
-        // let router = new Router('appinstance','/');
-        // router.addRoute('^/regiments$','regiments','content/regiments.json');
-        // router.addRoute('^/blahs/(.*)$','blahParamRoute','api/blah.php?id=');
-        // REGEX - NAME - DATA - TYPE (local or API)
-        RouterModule.addRoute('^/$', 'Welcome', {type: 'api', endpoint:'HOMEROUTE-api.php',template: null});
-        // RouterModule.addRoute('^/christmas-truce$', 'Christmas Truce', 'content/regiments.json');
-        // RouterModule.addRoute('^/another-one$', 'Another One', 'api/blah.php?id=');
-        RouterModule.addRoute('^/module-two/$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
-        RouterModule.addRoute('^/module-two/(.*)$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
+        document.querySelector('.hamburger').addEventListener('click', function (e) {
 
-        // WILDCARD ROUTE WILL CATCH API PAGES
-        RouterModule.addRoute('^/(.*)$', 'Welcome', {type: 'api', endpoint:'WILDCARDROUTE-api.php',template: null});        
+            this.classList.toggle('open');
+            document.getElementsByTagName('nav')[0].classList.toggle('open');
 
+        });
+
+    </script>
+    <script src="js/navigation.js"></script>
+    <script src="js/lib/sliderModule.js"></script>
+    <script src="js/lib/templates.js"></script>
+    <script>
+
+        var gridData = [
+            {
+                title: "Technology Changed",
+                subtitle: "How Technology Changed The War",
+                url: "img/tank.jpg"
+            },
+            {
+                title: "Uncle Same",
+                subtitle: "How America Is Great",
+                url: "img/us-military.jpg"
+            },
+            {
+                title: "Animals During the War",
+                subtitle: "Why didn't we make horsey gas masks",
+                url: "img/gas-mask-horse.jpg"
+            }
+        ];
+
+        var string = gridData.reduce((x, y) => {
+            return x + templates.gridItem(y);
+        },'');
+
+        console.log(string);
+
+            document.querySelector('.row.grid').insertAdjacentHTML('beforeend', string);
+
+
+
+        navigation.init();
+        window.addEventListener('click', function (event) {
+
+            if (event.target.tagName.toLowerCase() == 'a') {
+                event.preventDefault();
+                navigation.clickCallback(event, event.target);
+            }
+        });
     </script>
 
 
