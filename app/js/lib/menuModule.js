@@ -1,4 +1,4 @@
-var menuModule = (function () {
+var MenuModule = (function () {
 
 
     // DOM ELEMENTS
@@ -14,11 +14,27 @@ var menuModule = (function () {
     list.addEventListener('click',function(event){
 
         if(event.target.tagName.toLowerCase() == 'a'){
+            
+
             toggleUI();
+            manageActiveLink(event.target);
+
+            // REMOVE ACTIVE CLASS APPLY TO NEW LINK
+
         }
+
+        console.log('This was clicked',this);
 
     });
 
+    function manageActiveLink(link){
+        // console.log(link);
+        // .classList.remove('active');
+        if(document.querySelector('ul li a.active')){
+            document.querySelector('ul li a.active').classList.remove('active');
+        }
+        link.classList.add('active');
+    }
 
     /**
      * Toggle the Menu Visibility
