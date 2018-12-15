@@ -3,6 +3,7 @@ var RouterModule = (function () {
     var app = 'PROBABLY MODULE HERE';
     var defaultRoute = "/";
     var params;
+    var siteName = "The Great War Interactive Guide";
 
     // EVENT LISTENERS
     window.addEventListener('hashchange', hashChange);
@@ -39,7 +40,8 @@ var RouterModule = (function () {
                 var route = r[0];
                 params = new RegExp(route.url, 'gi').exec(url).slice(1);
                 console.log("ROUTE MODULE:", route.name, route.url, route.dataUrl, params);
-
+                
+                document.title = `${route.name} - ${siteName}`;
 
 
                 // CONTENT MODULE

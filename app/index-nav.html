@@ -67,6 +67,12 @@
 
         <div class="test-div" id="content-area">
 
+                <audio controls autoplay>
+
+                        <source src="media/audio/dulce-et-decorum-est.mp3" type="audio/mpeg">
+                        Your browser does not support the audio tag.
+                    </audio>
+
             <div class="spinner">
                 <img src="img/poppy.png" class="poppy" alt="POPPY">
             </div>
@@ -193,11 +199,14 @@
         // router.addRoute('^/regiments$','regiments','content/regiments.json');
         // router.addRoute('^/blahs/(.*)$','blahParamRoute','api/blah.php?id=');
         // REGEX - NAME - DATA - TYPE (local or API)
-        RouterModule.addRoute('^/$', 'home', 'content/homepage.html');
-        RouterModule.addRoute('^/menu-one$', 'regiments', 'content/regiments.json');
-        RouterModule.addRoute('^/menu-two$', 'blahParamRoute', 'api/blah.php?id=');
-        RouterModule.addRoute('^/menu-two/(.*?)$', 'blahParamRoute', 'api/blah.php?id=');
-        RouterModule.addRoute('^/menu-two/(.*?)/what-about-this$', 'DoubleMatcher', 'api/blah.php?id=');
+        RouterModule.addRoute('^/$', 'Welcome', {type: 'api', endpoint:'HOMEROUTE-api.php',template: null});
+        // RouterModule.addRoute('^/christmas-truce$', 'Christmas Truce', 'content/regiments.json');
+        // RouterModule.addRoute('^/another-one$', 'Another One', 'api/blah.php?id=');
+        RouterModule.addRoute('^/module-two/$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
+        RouterModule.addRoute('^/module-two/(.*)$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
+
+        // WILDCARD ROUTE WILL CATCH API PAGES
+        RouterModule.addRoute('^/(.*)$', 'Welcome', {type: 'api', endpoint:'WILDCARDROUTE-api.php',template: null});        
 
     </script>
 
