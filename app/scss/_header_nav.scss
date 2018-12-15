@@ -84,12 +84,12 @@ header {
             overflow: hidden;
             cursor: pointer;
             z-index:101;
+            transition:0.25s;
             // top:40px;
             // right:30px;
 
-            &:hover span {
-                background: $highlightcolor;
-            }
+
+
             
             
             span {
@@ -119,6 +119,15 @@ header {
                     transform:translateX(-50px);
                 }
             }
+
+            // HAMBURGER HOVER
+            &:hover span {
+                background: $highlightcolor;
+            }
+            &:hover {
+                transform:scale(0.9);
+            }
+
 
         }
 
