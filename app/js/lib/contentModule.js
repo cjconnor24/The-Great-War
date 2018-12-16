@@ -18,7 +18,7 @@ var ContentModule = (function () {
 
     function init(routeData) {
 
-
+        
 
         if (routeData.route.name == "pages") {
 
