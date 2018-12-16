@@ -55,7 +55,7 @@ var MediaModule = (function () {
     // TEMPLATE STRINGS
     var template = (file,index) => {
         return `<tr data-media-index="${index}">
-                    <td><strong>${index+1}.</strong> ${file.title} <span>${file.length}</span></td>
+                    <td><strong>${index+1}.</strong> ${file.title} <span>${file.length}</span> <a href="${file.original}" target="_blank" title="${file.title} Original Link"> <i class="fas fa-link"></i></a> </td>
                 </tr>`
     };
 
