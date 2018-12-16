@@ -85,6 +85,13 @@ var MenuModule = (function () {
             // console.log(d);
             
             menuItems.push(...items);
+
+            // PUSH STATIC MODULES TOO
+            menuItems.push({
+                slug: "media/",
+                title: "WWI Media"
+            });
+
             _render();
         });
         
@@ -94,5 +101,10 @@ var MenuModule = (function () {
 
     // CALL INIT
     _init();
+
+    return {
+        init: _init,
+        manageActiveLink: manageActiveLink
+    }
     
 }());

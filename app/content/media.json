@@ -1,25 +1,38 @@
 [
     {
         "title":"Dulce et Decorum Est.",
+        "description": "A reading of Wilfred Owens poem written in the WWI trenches",
+        "original": "https://www.youtube.com/watch?v=qB4cdRgIcB8",
         "length":"2:00",
         "files": [
-            "/media/video/dulce-et-decorum-est.webm",
             "/media/video/dulce-et-decorum-est.mp4"
         ]
     },
     {
-        "title":"Effects of Shell Shock",
-        "length":"3:53",
+        "title":"Sopwith Camel",
+        "description": "Original Sopwith Camel from WWI with original rotatry engine.",
+        "original": "https://www.youtube.com/watch?v=Hq78ZocOAkY",
+        "length":"4:04",
         "files": [
-            "/media/video/shell-shock.webm",
-            "/media/video/shell-shock.mp4"
+            "/media/video/sopwith-camel.mp4"
         ]
     },
     {
         "title":"WWI Tanks",
+        "description": "Footage of WWI tanks in action.",
+        "original": "https://www.youtube.com/watch?v=bbTvQOiGiWI&t=19s",
         "length":"9:40",
         "files": [
             "/media/video/wwi-tanks.mp4"
+        ]
+    },
+    {
+        "title":"WWI Submarine Warfare",
+        "description": "History channel documentary on submarines in WWI",
+        "original": "https://www.youtube.com/watch?v=a0RUebcUZIk",
+        "length":"2:11",
+        "files": [
+            "/media/video/submarine-warfare.mp4"
         ]
     }
 ]

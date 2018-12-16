@@ -16,3 +16,8 @@ $highlightcolor: #E9CC8A;
     justify-content: center;
     align-items: center;
 }
+
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
+}
