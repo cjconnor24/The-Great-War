@@ -43,6 +43,7 @@
     overflow: hidden;
     // background: rgba(255,255,255,0.75);
     background:#FFF;
+    box-shadow:0 0 30px #000;
     // border:2px solid $highlightcolor;
 
     // .media-container {
@@ -179,7 +180,7 @@
         padding:1em 0;
         justify-content: center;
         align-items: center;
-        transition:0.25s;
+        transition:0.3s ease-out;
         transform:translateY(0);
 
         &.hidden {
@@ -198,6 +199,7 @@
             height:40px;width:40px;
             background: $highlightcolor;
             border-radius:50%;
+            transition:0.3s;
             
             &::after {
                 text-align: center;
@@ -212,6 +214,10 @@
                 // text-shadow:0 0 10px rgba(0,0,0,0.6);
                 // border:3px solid #FFF;
                 border-radius:50%;
+            }
+            &:hover {
+                background: darken($highlightcolor,20);
+                transform: scale(1.2);
             }
             span {
                 display:none;

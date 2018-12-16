@@ -22,7 +22,7 @@ if($_GET['mode']=="insert"){
 
     // $_POST[''];
     $title = $_POST['title'];
-    $slug = $_POST['title'];
+    $slug = $_POST['slug'];
     $subtitle = $_POST['subtitle'];
     $content = $_POST['content'];
     $active = $_POST['active'];

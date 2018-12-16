@@ -135,10 +135,11 @@ header {
     
     nav {
     
-        // height: 100vh;
+        height: 100vh;
         width: 100%;
         display:block;
         position:fixed;
+        overflow: scroll;
         top:0px;
         background: rgba(0,0,0,0.95);
         // background: #F00;

@@ -46,6 +46,7 @@ var MediaModule = (function () {
         controls.play.classList.add('play');
     }
     video.onmouseout = function(){
+        console.log("MOUSE OUT")
         setTimeout(toggleControlsUI,3000);
         // toggleControlsUI();
     }

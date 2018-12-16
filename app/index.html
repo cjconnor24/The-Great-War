@@ -66,7 +66,25 @@
 
     </div>
 
+    <div class="audio-player">
+        <div class="control">
+            <ul>
+                <!-- <i class="fas fa-pause"></i> -->
+                <li class="playing"><i class="fas fa-pause"></i> <span>Play / Pause</span></li>
+                <li class="loud"><i class="fas fa-volume-mute"></i><span>Mute</span></li>
+                <!-- <i class="fas fa-volume-up"></i> -->
+            </ul>
+        </div>
+        <audio controls autoplay>
+            <source src="media/audio/hymn-to-the-fallen.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
     <!-- build:js js/bundle.js -->
+    <!-- AUDIO MODULE - MANAGES MUSIC -->
+    <script src="js/lib/audioModule.js"></script>
+    <!-- API MODULE - DONE -->
     <script src="js/lib/api.js"></script>
     <!-- MENU MODULE - DONE -->
     <script src="js/lib/MenuModule.js"></script>
@@ -84,7 +102,7 @@
         RouterModule.addRoute('^/not-found$', 'grid', { type: 'json', endpoint: 'pages-api.php', template: 'grid-template' });
 
         // HARD CODED ROUTES FOR MODULES
-        RouterModule.addRoute('^/media/$', 'module', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
+        RouterModule.addRoute('^/media/$', 'module', { type: 'api', endpoint: 'MODULEROUTE-api.php', template: null });
 
         // WILDCARD ROUTE WILL CATCH API PAGES
         RouterModule.addRoute('^/(.*?)$', 'pages', { type: 'json', endpoint: 'page-api.php', template: null });
