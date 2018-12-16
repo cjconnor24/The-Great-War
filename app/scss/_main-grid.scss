@@ -22,7 +22,7 @@
         
         .content {
             @extend %column-flex;
-            height: 50vh;
+            height: calc(50vh - 50px);
             
             background: linear-gradient(rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.0) 100%);
             width:100%;
@@ -86,7 +86,7 @@
         .element {
 
             .content {
-                height:25vh;
+                height:20vh;
             }
 
         }

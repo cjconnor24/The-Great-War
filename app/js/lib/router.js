@@ -20,6 +20,9 @@ var RouterModule = (function () {
 
     function hashChange() {
 
+        // MAKE SURE WINDOW GOES BACK TO TOP
+        window.scrollTo(0, 0);
+
         // GET URL AFTER HASH
         var url = window.location.hash.substring(1);
 

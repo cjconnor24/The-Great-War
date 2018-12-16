@@ -34,5 +34,14 @@
         "files": [
             "/media/video/submarine-warfare.mp4"
         ]
+    },
+    {
+        "title":"Life in a Trench",
+        "description": "An account of what life was like, living in a trench",
+        "original": "https://www.youtube.com/watch?v=_G4ZY66BG38",
+        "length":"3:14",
+        "files": [
+            "/media/video/life-in-a-trench.mp4"
+        ]
     }
 ]

@@ -144,6 +144,7 @@ var ContentModule = (function () {
     
             // GET TEMPLATE AND RENDER THE DATA TO THE DOM
             var template = await api.getText('templates/page-template.mustache.html');
+            parseData.heroimg = parseData.img.replace(/^(.*?)\.jpg/,'hero/$1-hero.jpg');
             var renderedTemplate = Mustache.render(template, parseData);
             container.innerHTML = renderedTemplate;
         } else {
