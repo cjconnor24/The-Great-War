@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Great War Interactive Guide</title>
-    <link rel="shortcut icon" href="about:blank">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!--build:js js/mustache-->
     <script src="js/lib/mustache.js"></script>
     <!--endbuild-->
@@ -55,10 +56,10 @@
 
     <div class="site-container">
 
-            <div class="spinner">
-                    <img src="img/poppy.png" class="poppy" alt="POPPY">
-                    <h1>Loading...</h1>
-                </div>
+        <div class="spinner">
+            <img src="img/poppy.png" class="poppy" alt="POPPY">
+            <h1>Loading...</h1>
+        </div>
 
 
     </div>
@@ -74,17 +75,17 @@
     <script src="js/lib/contentModule.js"></script>
     <!--endbuild-->
     <script>
-        
+
         // HOME PAGE ROUTER
-        RouterModule.addRoute('^/$', 'grid', {type: 'json', endpoint:'pages-api.php',template: 'grid-template'});
+        RouterModule.addRoute('^/$', 'grid', { type: 'json', endpoint: 'pages-api.php', template: 'grid-template' });
 
         // HARD CODED ROUTES
-        RouterModule.addRoute('^/module-two/$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
-        RouterModule.addRoute('^/module-two/(.*)$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
+        // RouterModule.addRoute('^/module-two/$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
+        // RouterModule.addRoute('^/module-two/(.*)$', 'Welcome', {type: 'api', endpoint:'MODULEROUTE-api.php',template: null});        
 
         // WILDCARD ROUTE WILL CATCH API PAGES
         // RouterModule.addRoute('^/(.*?)/(.*?)$', 'DOUBLE WILDCARD', {type: 'api', endpoint:'DOUBLEWILDCARDROUTE-api.php',template: null});        
-        RouterModule.addRoute('^/(.*?)$', 'pages', {type: 'api', endpoint:'page-api.php',template: null});        
+        RouterModule.addRoute('^/(.*?)$', 'pages', { type: 'json', endpoint: 'page-api.php', template: null });
 
     </script>
 

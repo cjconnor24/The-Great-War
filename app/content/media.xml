@@ -1,0 +1,20 @@
+<playlist>
+    <media>
+        <title>Dulce et Decorum Est.</title>
+        <length>2:00</length>
+        <location>/Users/chrisconnor/Sites/client-side-coursework/app/media/video/dulce-et-decorum-est</location>
+        <formats>
+            <format>mp4</format>
+            <format>webm</format>            
+        </formats>
+    </media>
+    <media>
+        <title>Effects of Shell Shock</title>
+        <length>3:53</length>
+        <location>/Users/chrisconnor/Sites/client-side-coursework/app/media/video/shell-shock</location>
+        <formats>
+            <format>mp4</format>
+            <format>webm</format>            
+        </formats>
+    </media>    
+</playlist>

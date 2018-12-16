@@ -79,9 +79,9 @@ gulp.task('sass', function () {
   return gulp.src("app/scss/**/*.scss")
     .pipe(sourcemaps.init())
     .pipe(sass({
-      outputStyle: 'compressed'
+      // outputStyle: 'compressed'
     }).on('error', sass.logError))
-    .pipe(sourcemaps.write())
+    // .pipe(sourcemaps.write())
     .pipe(autoprefixer())
     .pipe(gulp.dest("app/css"))
     .pipe(browserSync.stream({ match: 'app/**/*.css' }));

@@ -44,24 +44,34 @@ var ContentModule = (function () {
 
     function parseContent(content){
 
-        var newContent = {
-            title:content.title,
-            subtitle:content.subtitle,
-            img:content.img,
-            body:'',
-            firstPara:'',
-            col1:'',
-            col2:''
-        };
+        // var newContent = {
+        //     id: content.id,
+        //     slug: '',
+        //     subtitle:content.subtitle,
+        //     title:content.title,
+        //     img:content.img,
+        //     content: content.content,
+        //     body:'',
+        //     firstPara:'',
+        //     col1:'',
+        //     col2:''
+        // };
 
+        var newContent = content;
+
+        // 
         var returnSplit = "%return%";
+        var delimiters = {
+            newline: "%return%",
+            img: "%img=(.*?)%",
+            h1: "^#(.*?)"
+        };
 
         // REPLACE HEADINGS
         
         // SPLIT RETURNS
-        content.content.split(returnSplit).forEach((row) => {
+        content.content.split(delimiters.newline).forEach((row) => {
 
-            
 
             if(row.match(/^#/)){
 
@@ -101,19 +111,7 @@ var ContentModule = (function () {
 
     }
 
-    function displaySpinner(){
-        var spinnerTemplate = `<div class="spinner">
-        <img src="img/poppy.png" class="poppy" alt="POPPY">
-        <h1>Loading...</h1>
-    </div>`;
-
-    container.innerHTML = '';
-
-    }
-
-    function getTemplate(template) {
-
-    }
+ 
 
     function updateContent(routerData) {
         console.log('CONTENT MODULE: ', routeData.route.dataUrl + routeData.params);
@@ -121,17 +119,12 @@ var ContentModule = (function () {
 
     async function getPage(url) {
 
-        console.log('URL IS',url);
-        var data = await api.getJson('http://10.0.0.45:8080/pages-api.php?slug='+url);
-
-        console.log(data);
-        
+        var data = await api.getPage(url);
         var parseData = parseContent(data[0]);
-        console.log(parseData);
         
+        // GET TEMPLATE AND RENDER THE DATA TO THE DOM
         var template = await api.getText('templates/page-template.mustache.html');
         var renderedTemplate = Mustache.render(template,parseData);
-
         container.innerHTML = renderedTemplate;
 
     }

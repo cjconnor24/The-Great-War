@@ -1,0 +1,25 @@
+[
+    {
+        "title":"Dulce et Decorum Est.",
+        "length":"2:00",
+        "files": [
+            "/media/video/dulce-et-decorum-est.webm",
+            "/media/video/dulce-et-decorum-est.mp4"
+        ]
+    },
+    {
+        "title":"Effects of Shell Shock",
+        "length":"3:53",
+        "files": [
+            "/media/video/shell-shock.webm",
+            "/media/video/shell-shock.mp4"
+        ]
+    },
+    {
+        "title":"WWI Tanks",
+        "length":"9:40",
+        "files": [
+            "/media/video/wwi-tanks.mp4"
+        ]
+    }
+]

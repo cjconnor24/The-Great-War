@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Admin - The Great War Guide</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style>
         *, html {
         padding:0;margin:0;
@@ -69,6 +71,14 @@
         display:block;
         width:100%;
         margin:0 0 10px 0;
+    }
+    @media screen and (max-width: 1080px){
+        body {
+            background: #F00;
+        }
+        .container {
+            width: 80%;
+        }
     }
 
     </style>
@@ -142,7 +152,7 @@
                 console.log(pages);
 
                 list.innerHTML = pages.reduce((html, page, index) => {
-                    return html + `<li data-page-index="${index}">${page.title} <button>delete</button> <button>edit</button></li>`;
+                    return html + `<li data-page-index="${index}"><span>${page.title}</span> <button>delete</button> <button>edit</button></li>`;
                 }, '');
 
             }
@@ -198,6 +208,8 @@
                     }
                 }
 
+                pageObject.slug = _getSlug(pageObject.title);
+
                 savePage(pageObject);
 
                 pages.push(pageObject);
@@ -238,11 +250,34 @@
 
             function deletePage(event) {
 
-                var listIndex = event.target.closest('li').getAttribute('data-page-index');
-                console.log(listIndex);
-                console.log(event.target);
-                pages.splice(listIndex, 1);
-                _render();
+                var el = event.target.closest('li')
+
+                var checker = confirm('Are you sure you want to delete ' + el.innerText);
+
+                if (checker) {
+
+                    var listIndex = el.getAttribute('data-page-index');
+                    console.log(listIndex);
+                    console.log(event.target);
+
+                    var removedPage = pages.splice(listIndex, 1);
+                    removeDB(removedPage[0].slug);
+                    _render();
+
+                }
+
+
+            }
+
+            async function removeDB(slug) {
+
+                var result = await fetch("http://10.0.0.45:8080/admin-pages-api.php?mode=delete&slug=" + slug);
+                var test = await result.text();
+                console.log(test);
+
+                // $.post("http://10.0.0.45:8080/admin-pages-api.php?mode=delete&slug", page, function () {
+                //     alert("success");
+                // })
 
             }
 
@@ -287,29 +322,21 @@
 
             function savePage(page) {
 
-                console.log('THE PAGE is',page);
+                console.log('THE PAGE is', page);
 
                 var formData = new FormData();
 
-                for(var k in page){
+                for (var k in page) {
                     formData.append('a', 'vsada');
                 }
 
                 console.log(formData);
 
-                var save = fetch('http://10.0.0.45:8080/admin-pages-api.php?mode=insert', {
-
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(page), // body data type must match "Content-Type" header
-                    })
-                    .then((result) => {
-                        return result.json();
-                    })
-                    .then((data) => {
-                        console.log('THE FETCH RESULT IS',data);
+                $.post("http://10.0.0.45:8080/admin-pages-api.php?mode=insert", page, function () {
+                    alert("success");
+                })
+                    .done(function () {
+                        alert("second success");
                     });
 
 
@@ -323,6 +350,7 @@
 
         }());
     </script>
+    <script src="/admin/js/jquery.3.1.1.min.js"></script>
 
 </body>
 
