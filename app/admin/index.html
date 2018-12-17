@@ -119,6 +119,7 @@
 
     </div>
 
+    <script src="/js/lib/dataModule.js"></script>
     <script>
 
         // VERY CRUDE AND DAFT LOGIN...MORE FOR DEMO PURPOSES.
@@ -140,11 +141,7 @@
         //         window.location = "/";
         //         break;
         //     }
-
-
-
-
-
+        
         // } while(username !== "chrisconnor" && password !== "password");
 
         // PageModule.init();
@@ -171,6 +168,7 @@
 
             // STATE
             var pages = [];
+            var CONST_API_URL = 'http://10.0.0.45:8080/';
 
 
             // UI METHODS
@@ -301,13 +299,7 @@
 
             async function removeDB(slug) {
 
-                var result = await fetch("http://10.0.0.45:8080/admin-pages-api.php?mode=delete&slug=" + slug);
-                var test = await result.text();
-                console.log(test);
-
-                // $.post("http://10.0.0.45:8080/admin-pages-api.php?mode=delete&slug", page, function () {
-                //     alert("success");
-                // })
+                var result = await api.getText(CONST_API_URL + "admin-pages-api.php?mode=delete&slug=" + slug);
 
             }
 
@@ -345,16 +337,18 @@
 
             async function loadPages() {
 
-                var data = await fetch('http://10.0.0.45:8080/admin-pages-api.php');
-                var json = await data.json();
-                pages = json;
+
+                var data = await api.getJson(CONST_API_URL + 'admin-pages-api.php');
+                
+                pages = data;
                 _render();
 
             }
 
             function savePage(page) {
 
-                $.post("http://10.0.0.45:8080/admin-pages-api.php?mode=insert", page, function () {
+                // USING JQUERY HERE AS THERE WERE SOME ISSUES POSTING WITH FETCH
+                $.post(CONST_API_URL + "admin-pages-api.php?mode=insert", page, function () {
                     alert("success");
                 })
                     .done(function () {
