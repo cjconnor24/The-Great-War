@@ -120,12 +120,6 @@ var ContentModule = (function () {
 
     }
 
-
-
-    function updateContent(routerData) {
-
-    }
-
     async function getPage(url) {
 
         var data = await api.getPage(url);
