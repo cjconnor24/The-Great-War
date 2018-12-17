@@ -144,7 +144,7 @@
         // INITIALISE NAVIGATION
         // navigation.init();
         // api.getPages().then((x)=>{
-        //     console.log(x);
+
         // })
 
         window.addEventListener('click', function (event) {
@@ -159,14 +159,14 @@
 
         //     link.addEventListener('click', function (event) {
         //         event.preventDefault();
-        //         console.log(event);
+
         //         navigation.click();
         //     });
 
         // });
 
         // menu.buildMenu();
-        // console.log(api.getPages());
+
         // var source = document.getElementById("pageTemplate").innerHTML;
         // var template = Handlebars.compile(source);
 
@@ -197,16 +197,16 @@
 
         var childIDs = childPages.map((child) => child.id);
 
-        console.log('Pages before',pages);
+
 
         childPages.forEach((page)=>{
 
             var temp = pages.splice(pages.indexOf(page),1);
-            console.log(temp[0].id);
+
             
         });
 
-        console.log('Pages after',pages);
+
 
         
 

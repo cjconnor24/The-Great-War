@@ -50,7 +50,7 @@ var PageModule = (function () {
     // UI METHODS
     function _render() {
 
-        console.log(pages);
+        
 
         list.innerHTML = pages.reduce((html, page, index) => {
             return html + template(page, index);
@@ -86,7 +86,7 @@ var PageModule = (function () {
         for (var i = 0; i < form.elements.length; i++) {
 
             var field = form.elements[i];
-            // console.log(formFields.elements[i]);
+
             if (allowedFields.indexOf(field.type) !== -1) {
 
                 // CHECK THE RADIO BUTTON
@@ -96,7 +96,7 @@ var PageModule = (function () {
 
                 } else {
 
-                    console.log(field.name);
+
 
                     pageObject[field.name] = (field.name == 'content' ? encodeContent(field.value) : field.value);
 
@@ -161,8 +161,8 @@ var PageModule = (function () {
 
             var el = event.target.closest('tr')
             var listIndex = el.getAttribute('data-page-index');
-            console.log(listIndex);
-            console.log(event.target);
+
+
 
             var removedPage = pages.splice(listIndex, 1);
             removeDB(removedPage[0].slug);

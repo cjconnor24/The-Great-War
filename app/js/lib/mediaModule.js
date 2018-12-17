@@ -1,6 +1,6 @@
 var MediaModule = (function () {
 
-    console.log('MEDIA MODULE LOADED');
+
 
     // DOM ELEMENTS
     var container = document.querySelector('#media-module');
@@ -40,17 +40,17 @@ var MediaModule = (function () {
     // VIDEO EVENT LISTENERS
     video.onmouseover = toggleControlsUI;
     video.onplaying = function () {
-        console.log("Video Playing");
+
         controls.play.classList.remove('play');
         controls.play.classList.add('pause');
     }
     video.onpause = function () {
-        console.log("Video paused");
+
         controls.play.classList.remove('pause');
         controls.play.classList.add('play');
     }
     video.onmouseout = function () {
-        console.log("MOUSE OUT")
+
         setTimeout(toggleControlsUI, 3000);
         // toggleControlsUI();
     }
@@ -76,7 +76,7 @@ var MediaModule = (function () {
         }
 
     });
-    // EASTER-EGG CONSOLE LOG :)
+
     console.log('%c You can use your keys here :) <- (space) -> ', 'background: #E9CC8A; color: #000');
 
     // TEMPLATE STRINGS
@@ -124,7 +124,7 @@ var MediaModule = (function () {
     }
 
     function updateNowPlaying() {
-        console.log('now playing');
+
         nowPlaying.innerHTML = media[currentVideo].description;
     }
 
@@ -139,7 +139,7 @@ var MediaModule = (function () {
     }
 
     function hasNext() {
-        console.log('Current is', currentVideo, 'Current max length is', media.length);
+
         return (currentVideo < media.length - 1);
     }
 
@@ -174,7 +174,7 @@ var MediaModule = (function () {
             return html + template(file, index);
         }, '');
 
-        console.log(templateString);
+
         mediaTable.innerHTML = templateString;
 
     }

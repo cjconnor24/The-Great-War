@@ -36,7 +36,7 @@ var api = (function () {
 
         //
         if (cache[url]) {
-            console.log('data was cached');
+
             return Promise.resolve(cache[url]);
         }
 

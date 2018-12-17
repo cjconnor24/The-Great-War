@@ -37,14 +37,14 @@ var RouterModule = (function () {
             return url.match(new RegExp(route.url, 'gi'));
         });
 
-        console.log('ROUTER:',r);
+
 
         if (r.length > 0) {
 
             var route = r[0];
             // params = new RegExp(route.url, 'gi').exec(url).slice(1);
             params = new RegExp(route.url, 'gi').exec(url);
-            // console.log("ROUTE MODULE:", route.name, route.url, route.dataUrl, params);
+
 
             // document.title = `${route.name} - ${siteName}`;
 
@@ -60,7 +60,7 @@ var RouterModule = (function () {
         } else {
 
             // TO DO - SHOW 404
-            console.log('Page doesnt exists?');
+
 
         }
 

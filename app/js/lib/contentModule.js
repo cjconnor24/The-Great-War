@@ -37,14 +37,14 @@ var ContentModule = (function () {
 
         async function getModule(routeData) {
 
-            console.log("THIS IS A MODULE MODULE:", routeData);
+
             var data = await fetch('/content/media.html');
             var html = await data.text();
 
             var scriptModule = document.createElement('script');
             scriptModule.src = "/js/lib/mediaModule.js";
             scriptModule.onload = function(){
-                console.log('THIS SHOULD BE LOADED IN');
+
             }
 
             container.innerHTML = html;
@@ -59,17 +59,17 @@ var ContentModule = (function () {
     async function getGrid(routeData) {
 
         var data = await api.getGrid();
-        //console.log(data);
+
         var template = await api.getText('templates/grid-template.mustache.html');
         var renderedTemplate = Mustache.render(template, { elements: data });
-        //console.log(renderedTemplate);
+
         container.innerHTML = renderedTemplate;
 
     }
 
     function parseContent(content) {
 
-        console.log('content', content);
+
 
 
         var newContent = content;
@@ -123,7 +123,7 @@ var ContentModule = (function () {
 
 
     function updateContent(routerData) {
-        //console.log('CONTENT MODULE: ', routeData.route.dataUrl + routeData.params);
+
     }
 
     async function getPage(url) {
@@ -148,7 +148,7 @@ var ContentModule = (function () {
             var renderedTemplate = Mustache.render(template, parseData);
             container.innerHTML = renderedTemplate;
         } else {
-            console.log("THE PAGE DOESNT EXISTS");
+
             pageNotFound();
         }
 

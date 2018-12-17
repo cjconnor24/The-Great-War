@@ -14,7 +14,7 @@
 
             function togglePLAYState() {
 
-                console.log('play');
+
 
                 if (audioPlayer.paused) {
                     audioPlayer.play();
@@ -28,7 +28,7 @@
 
             function toggleMUTEState() {
 
-                console.log('mute');
+
 
                 if (audioPlayer.volume == 0) {
                     audioPlayer.volume = 1;
