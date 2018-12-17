@@ -58,26 +58,34 @@ var MediaModule = (function () {
     // KEYBOARD EVENT LISTENERS
     window.addEventListener('keyup', function (e) {
 
-        switch (e.keyCode) {
-            // SPACE BAR
-            case 32:
-                toggleVideoState()
-                break;
-            // LEFT ARROW
-            case 38:
-                previous()
-                break;
-            // RIGHT ARROW
-            case 40:
-                next()
-                break;
-            default:
-                break;
+        // MAKE SURE THERE IS NO ERROR WHEN USER NAVIGATES BACK
+        try {
+
+            switch (e.keyCode) {
+                // SPACE BAR
+                case 32:
+                    toggleVideoState()
+                    break;
+                // LEFT ARROW
+                case 38:
+                    previous()
+                    break;
+                // RIGHT ARROW
+                case 40:
+                    next()
+                    break;
+                default:
+                    break;
+            }
+
+        } catch(e){
+            console.log('Keys not active on this screen');
         }
+
 
     });
 
-    console.log('%c You can use your keys here :) <- (space) -> ', 'background: #E9CC8A; color: #000');
+    console.log('%c You can use your keys here :) \/ (space) /\ ', 'background: #E9CC8A; color: #000');
 
     // TEMPLATE STRINGS
     var template = (file, index) => {
