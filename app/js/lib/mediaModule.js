@@ -13,17 +13,19 @@ var MediaModule = (function () {
         play: document.querySelector('.media-container .controls li:nth-child(2)'),
         next: document.querySelector('.media-container .controls li:nth-child(3)')
     }
-    
-    // EVENT LISTENERS
-    controls.play.addEventListener('click',toggleVideoState);
-    controls.next.addEventListener('click',next);
-    controls.prev.addEventListener('click',previous);
-    mediaTable.addEventListener('click',function(e){
 
-        var row = e.target.closest('tr');    
+    // CONTROL EVENT LISTENERS
+    controls.play.addEventListener('click', toggleVideoState);
+    controls.next.addEventListener('click', next);
+    controls.prev.addEventListener('click', previous);
+
+    // TABLE CLICK EVENT LISTENERS
+    mediaTable.addEventListener('click', function (e) {
+
+        var row = e.target.closest('tr');
         var mediaIndex = parseInt(row.attributes.getNamedItem('data-media-index').value);
 
-        if(currentVideo==mediaIndex){
+        if (currentVideo == mediaIndex) {
             toggleVideoState();
         } else {
 
@@ -33,29 +35,54 @@ var MediaModule = (function () {
 
         }
 
-
     });
-    video.onplaying = function(){
+
+    // VIDEO EVENT LISTENERS
+    video.onmouseover = toggleControlsUI;
+    video.onplaying = function () {
         console.log("Video Playing");
         controls.play.classList.remove('play');
         controls.play.classList.add('pause');
     }
-    video.onpause = function(){
+    video.onpause = function () {
         console.log("Video paused");
         controls.play.classList.remove('pause');
         controls.play.classList.add('play');
     }
-    video.onmouseout = function(){
+    video.onmouseout = function () {
         console.log("MOUSE OUT")
-        setTimeout(toggleControlsUI,3000);
+        setTimeout(toggleControlsUI, 3000);
         // toggleControlsUI();
     }
-    video.onmouseover = toggleControlsUI;
+
+    // KEYBOARD EVENT LISTENERS
+    window.addEventListener('keyup', function (e) {
+
+        switch (e.keyCode) {
+            // SPACE BAR
+            case 32:
+                toggleVideoState()
+                break;
+            // LEFT ARROW
+            case 38:
+                previous()
+                break;
+            // RIGHT ARROW
+            case 40:
+                next()
+                break;
+            default:
+                break;
+        }
+
+        console.log(e);
+
+    });
 
     // TEMPLATE STRINGS
-    var template = (file,index) => {
+    var template = (file, index) => {
         return `<tr data-media-index="${index}">
-                    <td><strong>${index+1}.</strong> ${file.title} <span>${file.length}</span> <a href="${file.original}" target="_blank" title="${file.title} Original Link"> <i class="fas fa-link"></i></a> </td>
+                    <td><strong>${index + 1}.</strong> ${file.title} <span>${file.length}</span> <a href="${file.original}" target="_blank" title="${file.title} Original Link"> <i class="fas fa-link"></i></a> </td>
                 </tr>`
     };
 
@@ -64,8 +91,10 @@ var MediaModule = (function () {
     var currentVideo = 0;
 
 
+    // METHODS ----------------
+
     function toggleVideoState() {
-        if(video.paused){
+        if (video.paused) {
             video.play();
         } else {
             video.pause();
@@ -73,35 +102,35 @@ var MediaModule = (function () {
 
     }
 
-    function tableUIUpdate(){
+    function tableUIUpdate() {
 
-        var row = currentVideo+1;
+        var row = currentVideo + 1;
 
-        if(document.querySelector('.playing')){
+        if (document.querySelector('.playing')) {
             document.querySelector('.playing').classList.remove('playing');
         }
         document.querySelector(`tr:nth-child(${row})`).classList.add('playing');
-        
+
 
     }
 
-    function toggleControlsUI(){
+    function toggleControlsUI() {
         controls.container.classList.toggle('hidden');
     }
 
-    function changeSource(index){
+    function changeSource(index) {
         video.src = media[index].files[0];
         updateNowPlaying();
     }
 
-    function updateNowPlaying(){
+    function updateNowPlaying() {
         console.log('now playing');
         nowPlaying.innerHTML = media[currentVideo].description;
     }
 
-    function next(){
-        
-        if(hasNext()){
+    function next() {
+
+        if (hasNext()) {
             currentVideo++;
             changeSource(currentVideo);
             tableUIUpdate();
@@ -109,14 +138,14 @@ var MediaModule = (function () {
 
     }
 
-    function hasNext(){
-        console.log('Current is',currentVideo,'Current max length is',media.length);
-        return (currentVideo < media.length-1);
+    function hasNext() {
+        console.log('Current is', currentVideo, 'Current max length is', media.length);
+        return (currentVideo < media.length - 1);
     }
 
-    function previous(){
+    function previous() {
 
-        if(hasPrevious()){
+        if (hasPrevious()) {
 
             currentVideo--;
             changeSource(currentVideo);
@@ -126,10 +155,10 @@ var MediaModule = (function () {
 
     }
 
-    function hasPrevious(){
+    function hasPrevious() {
         return (currentVideo > 0);
     }
-    
+
 
     function init() {
 
@@ -139,11 +168,11 @@ var MediaModule = (function () {
 
     }
 
-    function _buildTable(){
+    function _buildTable() {
 
-        var templateString = media.reduce((html,file,index) =>{
-            return html + template(file,index);
-        },'');
+        var templateString = media.reduce((html, file, index) => {
+            return html + template(file, index);
+        }, '');
 
         console.log(templateString);
         mediaTable.innerHTML = templateString;
@@ -166,7 +195,7 @@ var MediaModule = (function () {
 
     _loadMedia();
 
-    function currentState(){
+    function currentState() {
         return {
             currentVideo: currentVideo,
             media: media
