@@ -1,25 +1,25 @@
 
-        // VERY CRUDE AND DAFT LOGIN...MORE FOR DEMO PURPOSES.
-        // IF THIS WAS IMPLEMENTS FOR REAL, WOULD LEVERAGE JSON TOKENS
-        // var username, password, count = 0;
+// VERY CRUDE AND DAFT LOGIN...MORE FOR DEMO PURPOSES.
+// IF THIS WAS IMPLEMENTS FOR REAL, WOULD LEVERAGE JSON TOKENS
+var username, password, count = 0;
 
-        // do {
+do {
 
-        //     username = prompt("Please enter your name", "chrisconnor");
-        //     password = prompt("Please enter your password", "password");
+    username = prompt("Please enter your name", "chrisconnor");
+    password = prompt("Please enter your password", "password");
 
-        //     if(username !== "chrisconnor" && password !== "password"){
-        //         alert('those credentials were wrong...'+(count==1 ? 'careful, last chance...' : ''));
-        //         count++;
-        //     }
+    if (username !== "chrisconnor" && password !== "password") {
+        alert('those credentials were wrong...' + (count == 1 ? 'careful, last chance...' : ''));
+        count++;
+    }
 
-        //     if(count===3){
-        //         alert('You have made three incorrect attempts. Goodbye.');
-        //         window.location = "/";
-        //         break;
-        //     }
+    if (count === 3) {
+        alert('You have made three incorrect attempts. Goodbye.');
+        window.location = "/";
+        break;
+    }
 
-        // } while(username !== "chrisconnor" && password !== "password");
+} while (username !== "chrisconnor" && password !== "password");
 
 
 var PageModule = (function () {
