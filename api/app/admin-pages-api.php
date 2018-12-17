@@ -1,21 +1,13 @@
 <?php
-// header("Access-Control-Allow-Origin: *");
-// header("Access-Control-Allow-Headers: application/json");
-
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE"); 
 header("Content-type: application/json");
 
 include('includes/db-connect.php');
-// print_r(json_decode($_POST));
 
-// exit();
-// echo json_encode($_GET);
 
-// echo file_get_contents("php://input");
-// exit();
-
+$conn->query("SET CHARACTER SET utf8;");
 
 
 if($_GET['mode']=="insert"){
@@ -57,15 +49,3 @@ if($_GET['mode']=="insert"){
     echo json_encode($results);
 }
 
-
-    
-    
-
-
-// $query->execute();
-
-
-
-
-
-// echo json_encode($results);
