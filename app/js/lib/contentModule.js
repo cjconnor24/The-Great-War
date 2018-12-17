@@ -38,11 +38,15 @@ var ContentModule = (function () {
         async function getModule(routeData) {
 
             // TODO: CURRENTLY HARD CODED. UPDATE FOR DYNAMIC MODULES
-            var data = await fetch('/content/media.html');
+            var filename = routeData.route.dataUrl.endpoint.replace(".html",'');
+            var data = await fetch('/content/'+filename+'.html');
             var html = await data.text();
 
+            
+            var moduleName = camelize(filename.replace('-',' '));
+
             var scriptModule = document.createElement('script');
-            scriptModule.src = "/js/lib/mediaModule.js";
+            scriptModule.src = "/js/lib/"+moduleName+"Module.js";
             scriptModule.onload = function(){
 
             }
@@ -54,6 +58,12 @@ var ContentModule = (function () {
         }
 
     }
+
+    function camelize(str) {
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+          return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+        }).replace(/\s+/g, '');
+      }
 
     /**
      * Get grid data and template

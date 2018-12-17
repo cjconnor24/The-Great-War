@@ -84,13 +84,13 @@ var MenuModule = (function () {
         //TODO: GET DATA FROM API
         api.getMenuItems().then((items) => {
 
-            
-            // var d = JSON.parse(items);
-
-            
             menuItems.push(...items);
 
             // PUSH STATIC MODULES TOO
+            menuItems.push({
+                slug: "war-heroes/",
+                title: "War Heroes"
+            });
             menuItems.push({
                 slug: "media/",
                 title: "WWI Media"

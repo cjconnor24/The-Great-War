@@ -108,7 +108,8 @@
             RouterModule.addRoute('^/not-found$', 'grid', { type: 'json', endpoint: 'pages-api.php', template: null });
 
             // HARD CODED ROUTES FOR MODULES
-            RouterModule.addRoute('^/media/$', 'module', { type: 'api', endpoint: null, template: null });
+            RouterModule.addRoute('^/media/$', 'module', { type: 'module', endpoint: "media.html", template: null });
+            RouterModule.addRoute('^/war-heroes/$', 'module', { type: 'module', endpoint: "war-heroes.html", template: null });
 
             // WILDCARD ROUTE WILL CATCH API PAGES
             RouterModule.addRoute('^/(.*?)$', 'pages', { type: 'json', endpoint: 'page-api.php', template: null });
