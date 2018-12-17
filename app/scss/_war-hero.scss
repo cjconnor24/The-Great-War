@@ -1,7 +1,24 @@
 #war-heros-module {
     max-width:1280px;
     margin:30px auto 0 auto;
-    // background: #F00;
+    
+    h1 {
+        text-transform: uppercase;
+        text-align: center;
+        border-bottom:1px solid $highlightcolor;
+        padding:0 0 20px 0;
+        margin:0 0 50px 0;
+    }
+
+    .poem {
+        font-size:1.5em;
+        line-height:1.5em;
+        font-family:$heading-font;
+        margin:0 auto;
+        text-align: center;
+        margin:0 0 70px 0;
+    }
+    
 }
 
 .hero-list {
@@ -20,7 +37,7 @@
         margin: 0 30px 30px 0;
         transition:0.4s;
         // transform-origin: 50% 100%;
-        &:hover {
+        &:hover, &.active {
             // .plaque {
                 transform:scale(1.2) rotate(-10deg);
             // }

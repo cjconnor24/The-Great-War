@@ -16,17 +16,22 @@ var WarHero = (function () {
     </div>`;
     }
 
+
+    /**
+     * Render the hero list
+     */
     function render(){
 
-        heros.forEach((hero) => {
-
-            list.insertAdjacentHTML('beforeend',template(hero));
-
-        });
+        list.innerHTML = heros.reduce(function(html,hero){
+            return html + template(hero);
+        },'');
 
     }
 
 
+    /**
+     * Load the Hero list from JSON
+     */
     async function loadHeros(){
 
         var data = await api.getJson('/content/war-heroes.json');
@@ -36,6 +41,7 @@ var WarHero = (function () {
 
     }
 
+    // LOAD THE HEROS STRAIGHT AWAY
     loadHeros();
 
     return {
