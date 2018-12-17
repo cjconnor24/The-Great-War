@@ -3,41 +3,41 @@ var ContentModule = (function () {
     // DOM ELEMENTS
     var container = document.querySelector('.site-container');
 
-    // CURRENT STATE
-    var currentPage;
-
     var pages = [];
 
-    // EVENT LISTENERS
-
-    function _render() {
 
 
-
-    }
-
+    /**
+     * Initialise the content Module
+     * @param {Object} routeData data passed through from routing module
+     */
     function init(routeData) {
 
-        
-
+        // CHECK IF A PAGES ROUTE
         if (routeData.route.name == "pages") {
 
             getPage(routeData.params[1]);
         }
 
+        // CHECK IF A GRID ROUTE
         if (routeData.route.name == "grid") {
             getGrid(routeData);
         }
 
+        // OTHERWISE DISPLAY MODULE
         if (routeData.route.name == "module") {
 
                 getModule(routeData);
 
         }
 
+        /**
+         * Get module markup and coding.
+         * @param {Object} routeData Route data from routing module
+         */
         async function getModule(routeData) {
 
-
+            // TODO: CURRENTLY HARD CODED. UPDATE FOR DYNAMIC MODULES
             var data = await fetch('/content/media.html');
             var html = await data.text();
 
@@ -55,7 +55,10 @@ var ContentModule = (function () {
 
     }
 
-
+    /**
+     * Get grid data and template
+     * @param {Object} routeData from route module
+     */
     async function getGrid(routeData) {
 
         var data = await api.getGrid();
@@ -67,10 +70,11 @@ var ContentModule = (function () {
 
     }
 
+    /**
+     * Parse the page content into two column format
+     * @param {Object} content page content
+     */
     function parseContent(content) {
-
-
-
 
         var newContent = content;
         newContent.body = '';
@@ -83,28 +87,30 @@ var ContentModule = (function () {
             h1: "^#(.*?)"
         };
 
-        // REPLACE HEADINGS
-
         // SPLIT RETURNS
         newContent.content.split(delimiters.newline).forEach((row) => {
 
-
+            // IF HEADING, ADD TAGS
             if (row.match(/^#/)) {
 
                 newContent['body'] += row.replace(/^#(.*)/, "<h2>$1</h2>");
 
             } else {
 
+                // ADD P TAGS
                 newContent['body'] += `<p>${row}</p>`;
             }
 
         });
 
+        // REPLACE THE IMG MARKDOWN WITH HTML
         newContent.body = newContent.body.replace(/%img=(.*?)%/gi, '<img src="img/$1" alt="$1"/>')
 
+        // GET THE FIRST PARAGRAPH
         newContent['firstPara'] = newContent.body.split('</p>')[0] + '</p>';
         newContent['body'] = newContent['body'].replace(newContent['firstPara'], "");
 
+        // IF LONGER THAN 1000 chars, create two columns
         if (newContent.body.length > 1000) {
 
             var halfway = newContent.body.indexOf('<p>', (newContent.body.length / 2));
@@ -120,6 +126,10 @@ var ContentModule = (function () {
 
     }
 
+    /**
+     * Get page data
+     * @param {string} url of page to retrieve
+     */
     async function getPage(url) {
 
         var data = await api.getPage(url);
@@ -141,14 +151,20 @@ var ContentModule = (function () {
             parseData.heroimg = parseData.img.replace(/^(.*?)\.jpg/,'hero/$1-hero.jpg');
             var renderedTemplate = Mustache.render(template, parseData);
             container.innerHTML = renderedTemplate;
+
         } else {
 
+            // PAGE WAS BLANK
             pageNotFound();
+
         }
 
 
     }
 
+    /**
+     * Page not found - update UI
+     */
     function pageNotFound(){
         container.innerHTML = `<h1>Uh oh...Page not found</h1><p>Sorry, but this page could not be located</p>`;
     }

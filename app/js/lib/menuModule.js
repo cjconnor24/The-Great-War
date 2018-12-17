@@ -27,6 +27,10 @@ var MenuModule = (function () {
 
     });
 
+    /**
+     * Highlight the current link in the menu
+     * @param {Element} link Link to highlight
+     */
     function manageActiveLink(link){
 
         // .classList.remove('active');

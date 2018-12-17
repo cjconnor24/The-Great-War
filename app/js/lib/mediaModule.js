@@ -1,7 +1,5 @@
 var MediaModule = (function () {
 
-
-
     // DOM ELEMENTS
     var container = document.querySelector('#media-module');
     var mediaTable = document.querySelector('.list table');
@@ -88,6 +86,12 @@ var MediaModule = (function () {
     console.log('%c You can use your keys here :) \/ (space) /\ ', 'background: #E9CC8A; color: #000');
 
     // TEMPLATE STRINGS
+
+    /**
+     * Get rendered table row
+     * @param {Object} file file to be populated
+     * @param {Integer} index Current point in loop
+     */
     var template = (file, index) => {
         return `<tr data-media-index="${index}">
                     <td><strong>${index + 1}.</strong> ${file.title} <span>${file.length}</span> <a href="${file.original}" target="_blank" title="${file.title} Original Link"> <i class="fas fa-link"></i></a> </td>
@@ -101,6 +105,10 @@ var MediaModule = (function () {
 
     // METHODS ----------------
 
+
+    /**
+     * Toggle the video state
+     */
     function toggleVideoState() {
         if (video.paused) {
             video.play();
@@ -110,6 +118,9 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Update the Table UI
+     */
     function tableUIUpdate() {
 
         var row = currentVideo + 1;
@@ -122,20 +133,33 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Toggle the controls
+     */
     function toggleControlsUI() {
         controls.container.classList.toggle('hidden');
     }
 
+    /**
+     * Change the current playing video
+     * @param {Integer} index The index of the new video in the local state
+     */
     function changeSource(index) {
         video.src = media[index].files[0];
         updateNowPlaying();
     }
 
+    /**
+     * Update the now playing text
+     */
     function updateNowPlaying() {
 
         nowPlaying.innerHTML = media[currentVideo].description;
     }
 
+    /**
+     * Skip to next video
+     */
     function next() {
 
         if (hasNext()) {
@@ -146,11 +170,18 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Check to see if hasNext
+     */
     function hasNext() {
 
         return (currentVideo < media.length - 1);
     }
 
+
+    /**
+     * Switch to previous video
+     */
     function previous() {
 
         if (hasPrevious()) {
@@ -163,19 +194,16 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Check to see if hasPrevious
+     */
     function hasPrevious() {
         return (currentVideo > 0);
     }
 
-
-    function init() {
-
-        // LOAD MEDIA
-
-        // UPDATE 
-
-    }
-
+    /**
+     * Build the table using reducer
+     */
     function _buildTable() {
 
         var templateString = media.reduce((html, file, index) => {
@@ -187,6 +215,9 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Load the media playlist
+     */
     async function _loadMedia() {
 
         var data = await fetch('/content/media.json');
@@ -201,6 +232,7 @@ var MediaModule = (function () {
 
     }
 
+    // CALL THAT STRAIGHT AWAIT TO LOAD THE MEDIA
     _loadMedia();
 
     function currentState() {
