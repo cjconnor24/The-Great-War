@@ -67,11 +67,27 @@ gulp.task('json', function() {
   .pipe(gulp.dest('dist/js'))
 });
 
+gulp.task('media', function() {
+  return gulp.src(['app/media/**/*'])
+  .pipe(gulp.dest('dist/media'))
+});
+
+gulp.task('jslib', function() {
+  return gulp.src(['app/js/**/*'])
+  .pipe(gulp.dest('dist/js'))
+});
 
 gulp.task('images', function(){
   return gulp.src('app/img/**/*.+(png|jpg|gif|svg)')
   .pipe(imagemin())
   .pipe(gulp.dest('dist/img'))
+});
+
+gulp.task('static', function(){
+
+  return gulp.src(['!./node_modules/**','app/**/*.php','app/**/*.html','app/**/*.json'])
+  .pipe(gulp.dest("dist"))
+
 });
 
 // Compile sass into CSS & auto-inject into browsers
@@ -112,5 +128,10 @@ gulp.task('clean:dist', function() {
 
 // BUILD FOR PRODUCTION
 gulp.task('build', function (callback) {
-  runSequence('clean:dist', 'sass', 'css','json', 'useref', 'images', callback)
+  // runSequence('clean:dist', 'sass', 'css','json', 'useref', 'images', callback)
+  runSequence('sass', 'css','json', 'images', callback)
+});
+gulp.task('buildjim', function (callback) {
+  // runSequence('clean:dist', 'sass', 'css','json', 'useref', 'images', callback)
+  runSequence('clean:dist','static','sass', 'jslib','media','css','images', callback)
 });
