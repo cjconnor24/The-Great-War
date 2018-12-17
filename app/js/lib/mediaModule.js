@@ -75,9 +75,9 @@ var MediaModule = (function () {
                 break;
         }
 
-        console.log(e);
-
     });
+    // EASTER-EGG CONSOLE LOG :)
+    console.log('%c You can use your keys here :) <- (space) -> ', 'background: #E9CC8A; color: #000');
 
     // TEMPLATE STRINGS
     var template = (file, index) => {
