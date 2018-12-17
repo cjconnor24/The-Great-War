@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteRule ^pages/$ pages-api.php [L]
+RewriteRule ^pages/([^/\.]+)/?$ pages-api.php?slug=$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+RewriteRule ^(.*)$ $1.php [L]
