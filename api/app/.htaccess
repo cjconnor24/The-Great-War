@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteRule ^pages/$ pages-api.php [L]
+RewriteRule ^pages/create?$ admin-pages-api.php [L]
+
+# admin-pages-api.php?mode=delete&slug=
+RewriteRule ^pages/([^/\.]+)/delete?$ admin-pages-api.php?mode=delete&slug=$1 [L]
+RewriteRule ^pages/([^/\.]+)/?$ pages-api.php?slug=$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+
+RewriteRule ^(.*)$ $1.php [L]

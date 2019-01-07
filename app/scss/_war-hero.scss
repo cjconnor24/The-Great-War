@@ -1,0 +1,119 @@
+#war-heros-module {
+    max-width:1280px;
+    margin:30px auto 0 auto;
+    
+    h1 {
+        text-transform: uppercase;
+        text-align: center;
+        border-bottom:1px solid $highlightcolor;
+        padding:0 0 20px 0;
+        margin:0 0 50px 0;
+    }
+
+    .poem {
+        font-size:1.5em;
+        line-height:1.5em;
+        font-family:$heading-font;
+        margin:0 auto;
+        text-align: center;
+        margin:0 0 70px 0;
+    }
+    
+}
+
+.hero-list {
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    
+    .memorial {
+        display: flex;
+        position: relative;
+        width: 200px;
+        height: 300px;
+        overflow: hidden;
+        justify-content: space-evenly;
+        margin: 0 30px 30px 0;
+        transition:0.4s;
+        // transform-origin: 50% 100%;
+        &:hover, &.active {
+            // .plaque {
+                transform:scale(1.2) rotate(-10deg);
+            // }
+        }
+        
+        
+        .plaque {
+            // background: ;
+            background:url('/img/poppy-colour.png') no-repeat center center rgba(#000, 0.2);
+            background-size: 100px;
+            font-size:0.8em;
+            // height: 100px;
+            // display: flex;
+            flex-direction: column;
+
+            border-radius: 10px;
+            padding: 64px 10px 10px 10px;
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+            transition:0.3s;
+            p {
+                margin:0;padding:0;
+            }
+            p:first-child {
+                font-family:Arial, Helvetica, sans-serif;
+                font-weight:bold;
+            }
+            p:nth-child(3) {
+                width:80%;
+                margin:20px auto 0 auto;
+                text-align: center;
+                opacity: 0;
+                transition: 0.3s;
+            }
+
+            &:hover {
+
+                p:nth-child(3){
+                   opacity: 1;
+                   cursor: pointer;
+               }
+
+               background:url('/img/poppy.png') no-repeat center center rgba(#000, 0.8);
+            background-size: 110px;
+            
+
+            }
+        }
+    
+        &::after,
+        &::before {
+            background: $highlightcolor;
+            border-radius: 3px;
+            transition: 0.25s;
+        }
+        &::before {
+            position: absolute;
+            content: " ";
+            display: block;
+            width: 100%;
+            height: 35px;
+            top: 60px;
+        }
+        &::after {
+            position: absolute;
+            top: 0;
+            left: calc((200px / 2) - 15px);
+            content: " ";
+            display: block;
+            width: 30px;
+            height: 100%;
+        }
+    }
+
+
+
+}
+

@@ -1,25 +1,25 @@
 
-        // VERY CRUDE AND DAFT LOGIN...MORE FOR DEMO PURPOSES.
-        // IF THIS WAS IMPLEMENTS FOR REAL, WOULD LEVERAGE JSON TOKENS
-        // var username, password, count = 0;
+// VERY CRUDE AND DAFT LOGIN...MORE FOR DEMO PURPOSES.
+// IF THIS WAS IMPLEMENTS FOR REAL, WOULD LEVERAGE JSON TOKENS
+var username, password, count = 0;
 
-        // do {
+do {
 
-        //     username = prompt("Please enter your name", "chrisconnor");
-        //     password = prompt("Please enter your password", "password");
+    username = prompt("Please enter your name", "chrisconnor");
+    password = prompt("Please enter your password", "password");
 
-        //     if(username !== "chrisconnor" && password !== "password"){
-        //         alert('those credentials were wrong...'+(count==1 ? 'careful, last chance...' : ''));
-        //         count++;
-        //     }
+    if (username !== "chrisconnor" && password !== "password") {
+        alert('those credentials were wrong...' + (count == 1 ? 'careful, last chance...' : ''));
+        count++;
+    }
 
-        //     if(count===3){
-        //         alert('You have made three incorrect attempts. Goodbye.');
-        //         window.location = "/";
-        //         break;
-        //     }
+    if (count === 3) {
+        alert('You have made three incorrect attempts. Goodbye.');
+        window.location = "/";
+        break;
+    }
 
-        // } while(username !== "chrisconnor" && password !== "password");
+} while (username !== "chrisconnor" && password !== "password");
 
 
 var PageModule = (function () {
@@ -48,9 +48,11 @@ var PageModule = (function () {
 
 
     // UI METHODS
-    function _render() {
 
-        console.log(pages);
+    /**
+     * Render List to DOM
+     */
+    function _render() {
 
         list.innerHTML = pages.reduce((html, page, index) => {
             return html + template(page, index);
@@ -58,10 +60,16 @@ var PageModule = (function () {
 
     }
 
+    /**
+     * Inialise the module
+     */
     function init() {
         loadPages();
     }
 
+    /**
+     * Clear the form
+     */
     function clearform() {
         for (var i = 0; i < form.elements.length; i++) {
 
@@ -78,6 +86,12 @@ var PageModule = (function () {
 
 
     // FUNCTIONAL METHODS
+
+
+    /**
+     * Add new page
+     * @param {Object} event click event on form
+     */
     function addPage(event) {
 
         event.preventDefault();
@@ -86,7 +100,7 @@ var PageModule = (function () {
         for (var i = 0; i < form.elements.length; i++) {
 
             var field = form.elements[i];
-            // console.log(formFields.elements[i]);
+
             if (allowedFields.indexOf(field.type) !== -1) {
 
                 // CHECK THE RADIO BUTTON
@@ -96,13 +110,9 @@ var PageModule = (function () {
 
                 } else {
 
-                    console.log(field.name);
-
                     pageObject[field.name] = (field.name == 'content' ? encodeContent(field.value) : field.value);
 
                 }
-
-
 
             }
         }
@@ -110,20 +120,22 @@ var PageModule = (function () {
         // CONVERT THE SLUG
         pageObject.slug = _getSlug(pageObject.title);
 
-
-
+        // SAVE IN DB
         savePage(pageObject);
 
+        // ADD TO LOCAL STATE
         pages.push(pageObject);
+
         clearform();
         _render();
 
     }
 
+    /**
+     * Manage button clicks through bubbling
+     * @param {Object} event click event
+     */
     function manageButtons(event) {
-
-
-
 
         if (event.target.innerText.trim().toLowerCase() == "delete") {
 
@@ -138,7 +150,10 @@ var PageModule = (function () {
 
     }
 
-
+    /**
+     * Encode the string to markdown for storage
+     * @param {String} content body content to be encoded
+     */
     function encodeContent(content) {
 
         // TRIM RETURNS
@@ -147,44 +162,63 @@ var PageModule = (function () {
 
     }
 
+    /**
+     * Decode the markdown from DB
+     * @param {String} content content to be decoded
+     */
     function decodeContent(content) {
         var newContent = content.replace(/%return%/gi, '\n\n');
         return newContent;
     }
 
+    /**
+     * Delete page 
+     * @param {Object} event click event
+     */
     function deletePage(event) {
 
         var checker = confirm('Are you sure you want to delete this page...?');
-
 
         if (checker) {
 
             var el = event.target.closest('tr')
             var listIndex = el.getAttribute('data-page-index');
-            console.log(listIndex);
-            console.log(event.target);
 
             var removedPage = pages.splice(listIndex, 1);
+
+            // REMOVE FROM THE DATABASE
             removeDB(removedPage[0].slug);
             _render();
 
         }
 
-
     }
 
+    /**
+     * Remove page from DB
+     * @param {String} slug slug of the DB entry to be removed
+     */
     async function removeDB(slug) {
 
         var result = await api.getText(CONST_API_URL + "admin-pages-api.php?mode=delete&slug=" + slug);
 
     }
 
+    /**
+     * Title to be converted
+     * @param {String} title converted to slug
+     */
     function _getSlug(title) {
 
         return title.replace(/[\"\@\-\'\.\!\s\?\//]+/gi, '-').toLowerCase();
 
     }
 
+    // TODO: VERY BUGGY
+    /**
+     * Edit page
+     * @param {Object} event Click event
+     */
     function editPage(event) {
 
 
@@ -198,12 +232,9 @@ var PageModule = (function () {
 
             if (allowedFields.indexOf(field.type) !== -1) {
 
-
-
                 field.value = (field.name == 'content' ? decodeContent(page[field.name]) : page[field.name]);
 
             }
-
 
         }
 
@@ -211,6 +242,9 @@ var PageModule = (function () {
 
     }
 
+    /**
+     * Load pages from DB
+     */
     async function loadPages() {
 
 
@@ -221,6 +255,11 @@ var PageModule = (function () {
 
     }
 
+
+    /**
+     * Save page to DB 
+     * @param {Object} page page to be saved
+     */
     function savePage(page) {
 
         // USING JQUERY HERE AS THERE WERE SOME ISSUES POSTING WITH FETCH
@@ -237,7 +276,5 @@ var PageModule = (function () {
     return {
         init: init
     }
-
-
 
 }());

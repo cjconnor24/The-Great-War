@@ -127,7 +127,7 @@ var slider = (function (slideCollection, where, position) {
                 rewind();
             }
             updateUI();
-            console.log('NEXT', currentPosition);
+
         };
 
         previous = function () {
@@ -137,7 +137,7 @@ var slider = (function (slideCollection, where, position) {
             } else {
                 currentPosition = maxElements;
             }
-            console.log('PREVIOUS', currentPosition);
+
             updateUI();
         };
 
@@ -151,8 +151,8 @@ var slider = (function (slideCollection, where, position) {
 
         init = function () {
 
-            console.log("TIRGGER");
-            console.log(this);
+
+
 
             // HIGHLIGHT THE FIRST SLIDE
             document.querySelector(where).insertAdjacentHTML(position, buildSlider());
@@ -164,10 +164,10 @@ var slider = (function (slideCollection, where, position) {
         }
 
         config = function(where, position){
-            console.log(this);
+
             this.where = where;
             this.position = position;
-            console.log(this);
+
         }
 
         

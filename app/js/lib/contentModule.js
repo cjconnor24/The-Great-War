@@ -3,48 +3,52 @@ var ContentModule = (function () {
     // DOM ELEMENTS
     var container = document.querySelector('.site-container');
 
-    // CURRENT STATE
-    var currentPage;
-
     var pages = [];
 
-    // EVENT LISTENERS
-
-    function _render() {
 
 
-
-    }
-
+    /**
+     * Initialise the content Module
+     * @param {Object} routeData data passed through from routing module
+     */
     function init(routeData) {
 
-        
-
+        // CHECK IF A PAGES ROUTE
         if (routeData.route.name == "pages") {
 
             getPage(routeData.params[1]);
         }
 
+        // CHECK IF A GRID ROUTE
         if (routeData.route.name == "grid") {
             getGrid(routeData);
         }
 
+        // OTHERWISE DISPLAY MODULE
         if (routeData.route.name == "module") {
 
                 getModule(routeData);
 
         }
 
+        /**
+         * Get module markup and coding.
+         * @param {Object} routeData Route data from routing module
+         */
         async function getModule(routeData) {
 
-            console.log("THIS IS A MODULE MODULE:", routeData);
-            var data = await fetch('/content/media.html');
+            // TODO: CURRENTLY HARD CODED. UPDATE FOR DYNAMIC MODULES
+            var filename = routeData.route.dataUrl.endpoint.replace(".html",'');
+            var data = await fetch('/content/'+filename+'.html');
             var html = await data.text();
 
+            
+            var moduleName = camelize(filename.replace('-',' '));
+
             var scriptModule = document.createElement('script');
-            scriptModule.src = "/js/lib/mediaModule.js";
+            scriptModule.src = "/js/lib/"+moduleName+"Module.js";
             scriptModule.onload = function(){
-                console.log('THIS SHOULD BE LOADED IN');
+
             }
 
             container.innerHTML = html;
@@ -55,22 +59,32 @@ var ContentModule = (function () {
 
     }
 
+    function camelize(str) {
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+          return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+        }).replace(/\s+/g, '');
+      }
 
+    /**
+     * Get grid data and template
+     * @param {Object} routeData from route module
+     */
     async function getGrid(routeData) {
 
         var data = await api.getGrid();
-        //console.log(data);
+
         var template = await api.getText('templates/grid-template.mustache.html');
         var renderedTemplate = Mustache.render(template, { elements: data });
-        //console.log(renderedTemplate);
+
         container.innerHTML = renderedTemplate;
 
     }
 
+    /**
+     * Parse the page content into two column format
+     * @param {Object} content page content
+     */
     function parseContent(content) {
-
-        console.log('content', content);
-
 
         var newContent = content;
         newContent.body = '';
@@ -83,28 +97,30 @@ var ContentModule = (function () {
             h1: "^#(.*?)"
         };
 
-        // REPLACE HEADINGS
-
         // SPLIT RETURNS
         newContent.content.split(delimiters.newline).forEach((row) => {
 
-
+            // IF HEADING, ADD TAGS
             if (row.match(/^#/)) {
 
                 newContent['body'] += row.replace(/^#(.*)/, "<h2>$1</h2>");
 
             } else {
 
+                // ADD P TAGS
                 newContent['body'] += `<p>${row}</p>`;
             }
 
         });
 
+        // REPLACE THE IMG MARKDOWN WITH HTML
         newContent.body = newContent.body.replace(/%img=(.*?)%/gi, '<img src="img/$1" alt="$1"/>')
 
+        // GET THE FIRST PARAGRAPH
         newContent['firstPara'] = newContent.body.split('</p>')[0] + '</p>';
         newContent['body'] = newContent['body'].replace(newContent['firstPara'], "");
 
+        // IF LONGER THAN 1000 chars, create two columns
         if (newContent.body.length > 1000) {
 
             var halfway = newContent.body.indexOf('<p>', (newContent.body.length / 2));
@@ -120,12 +136,10 @@ var ContentModule = (function () {
 
     }
 
-
-
-    function updateContent(routerData) {
-        //console.log('CONTENT MODULE: ', routeData.route.dataUrl + routeData.params);
-    }
-
+    /**
+     * Get page data
+     * @param {string} url of page to retrieve
+     */
     async function getPage(url) {
 
         var data = await api.getPage(url);
@@ -147,14 +161,20 @@ var ContentModule = (function () {
             parseData.heroimg = parseData.img.replace(/^(.*?)\.jpg/,'hero/$1-hero.jpg');
             var renderedTemplate = Mustache.render(template, parseData);
             container.innerHTML = renderedTemplate;
+
         } else {
-            console.log("THE PAGE DOESNT EXISTS");
+
+            // PAGE WAS BLANK
             pageNotFound();
+
         }
 
 
     }
 
+    /**
+     * Page not found - update UI
+     */
     function pageNotFound(){
         container.innerHTML = `<h1>Uh oh...Page not found</h1><p>Sorry, but this page could not be located</p>`;
     }

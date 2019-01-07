@@ -1,28 +1,39 @@
 var api = (function () {
 
+    // API URL CONST
     var CONST_API_URL = 'http://10.0.0.45:8080/';
     var cache = {};
 
+    /**
+     * Get menu items from API
+     */
     function getMenuItems(){
 
         return fetchJSON(CONST_API_URL + 'menu.php');
 
     }
 
+    /**
+     * Get grid items from API
+     */
     function getGrid(){
 
         return fetchJSON(CONST_API_URL + 'pages-api.php');
 
     }
     
-    function getPages(){
-
-    }
-
+    /**
+     * Get model template from local
+     * @param {String} localPath of resource to retrieve
+     */
     function getModule(localPath){
         return fetchTEXT(localPath);
     }
 
+    /**
+     * Retrieve page from API using slug
+     * @param {String} slug of page to be retrieved
+     */
     function getPage(slug){
         return fetchJSON(CONST_API_URL + 'pages-api.php?slug=' + slug);
     }
@@ -34,9 +45,9 @@ var api = (function () {
      */
     function fetchJSON(url, options = {}) {
 
-        //
+        // CHECK TO SEE IF ALREADY CACHED
         if (cache[url]) {
-            console.log('data was cached');
+
             return Promise.resolve(cache[url]);
         }
 
@@ -50,6 +61,11 @@ var api = (function () {
             });
     }
 
+    /**
+     * Get text response
+     * @param {String} url of text to be fetched
+     * @param {Object} options fetch request params
+     */
     function fetchTEXT(url, options = {}) {
 
         // IF ITS IN THE CACHE, JUST RETURN IT

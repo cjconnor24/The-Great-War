@@ -1,7 +1,5 @@
 var MediaModule = (function () {
 
-    console.log('MEDIA MODULE LOADED');
-
     // DOM ELEMENTS
     var container = document.querySelector('#media-module');
     var mediaTable = document.querySelector('.list table');
@@ -40,17 +38,17 @@ var MediaModule = (function () {
     // VIDEO EVENT LISTENERS
     video.onmouseover = toggleControlsUI;
     video.onplaying = function () {
-        console.log("Video Playing");
+
         controls.play.classList.remove('play');
         controls.play.classList.add('pause');
     }
     video.onpause = function () {
-        console.log("Video paused");
+
         controls.play.classList.remove('pause');
         controls.play.classList.add('play');
     }
     video.onmouseout = function () {
-        console.log("MOUSE OUT")
+
         setTimeout(toggleControlsUI, 3000);
         // toggleControlsUI();
     }
@@ -58,28 +56,42 @@ var MediaModule = (function () {
     // KEYBOARD EVENT LISTENERS
     window.addEventListener('keyup', function (e) {
 
-        switch (e.keyCode) {
-            // SPACE BAR
-            case 32:
-                toggleVideoState()
-                break;
-            // LEFT ARROW
-            case 38:
-                previous()
-                break;
-            // RIGHT ARROW
-            case 40:
-                next()
-                break;
-            default:
-                break;
+        // MAKE SURE THERE IS NO ERROR WHEN USER NAVIGATES BACK
+        try {
+
+            switch (e.keyCode) {
+                // SPACE BAR
+                case 32:
+                    toggleVideoState()
+                    break;
+                // LEFT ARROW
+                case 38:
+                    previous()
+                    break;
+                // RIGHT ARROW
+                case 40:
+                    next()
+                    break;
+                default:
+                    break;
+            }
+
+        } catch(e){
+            console.log('Keys not active on this screen');
         }
 
+
     });
-    // EASTER-EGG CONSOLE LOG :)
-    console.log('%c You can use your keys here :) <- (space) -> ', 'background: #E9CC8A; color: #000');
+
+    console.log('%c You can use your keys here :) \/ (space) /\ ', 'background: #E9CC8A; color: #000');
 
     // TEMPLATE STRINGS
+
+    /**
+     * Get rendered table row
+     * @param {Object} file file to be populated
+     * @param {Integer} index Current point in loop
+     */
     var template = (file, index) => {
         return `<tr data-media-index="${index}">
                     <td><strong>${index + 1}.</strong> ${file.title} <span>${file.length}</span> <a href="${file.original}" target="_blank" title="${file.title} Original Link"> <i class="fas fa-link"></i></a> </td>
@@ -93,6 +105,10 @@ var MediaModule = (function () {
 
     // METHODS ----------------
 
+
+    /**
+     * Toggle the video state
+     */
     function toggleVideoState() {
         if (video.paused) {
             video.play();
@@ -102,6 +118,9 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Update the Table UI
+     */
     function tableUIUpdate() {
 
         var row = currentVideo + 1;
@@ -114,20 +133,33 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Toggle the controls
+     */
     function toggleControlsUI() {
         controls.container.classList.toggle('hidden');
     }
 
+    /**
+     * Change the current playing video
+     * @param {Integer} index The index of the new video in the local state
+     */
     function changeSource(index) {
         video.src = media[index].files[0];
         updateNowPlaying();
     }
 
+    /**
+     * Update the now playing text
+     */
     function updateNowPlaying() {
-        console.log('now playing');
+
         nowPlaying.innerHTML = media[currentVideo].description;
     }
 
+    /**
+     * Skip to next video
+     */
     function next() {
 
         if (hasNext()) {
@@ -138,11 +170,18 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Check to see if hasNext
+     */
     function hasNext() {
-        console.log('Current is', currentVideo, 'Current max length is', media.length);
+
         return (currentVideo < media.length - 1);
     }
 
+
+    /**
+     * Switch to previous video
+     */
     function previous() {
 
         if (hasPrevious()) {
@@ -155,30 +194,30 @@ var MediaModule = (function () {
 
     }
 
+    /**
+     * Check to see if hasPrevious
+     */
     function hasPrevious() {
         return (currentVideo > 0);
     }
 
-
-    function init() {
-
-        // LOAD MEDIA
-
-        // UPDATE 
-
-    }
-
+    /**
+     * Build the table using reducer
+     */
     function _buildTable() {
 
         var templateString = media.reduce((html, file, index) => {
             return html + template(file, index);
         }, '');
 
-        console.log(templateString);
+
         mediaTable.innerHTML = templateString;
 
     }
 
+    /**
+     * Load the media playlist
+     */
     async function _loadMedia() {
 
         var data = await fetch('/content/media.json');
@@ -193,6 +232,7 @@ var MediaModule = (function () {
 
     }
 
+    // CALL THAT STRAIGHT AWAIT TO LOAD THE MEDIA
     _loadMedia();
 
     function currentState() {

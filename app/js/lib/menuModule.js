@@ -23,12 +23,16 @@ var MenuModule = (function () {
 
         }
 
-        console.log('This was clicked',this);
+
 
     });
 
+    /**
+     * Highlight the current link in the menu
+     * @param {Element} link Link to highlight
+     */
     function manageActiveLink(link){
-        // console.log(link);
+
         // .classList.remove('active');
         if(document.querySelector('ul li a.active')){
             document.querySelector('ul li a.active').classList.remove('active');
@@ -79,14 +83,14 @@ var MenuModule = (function () {
         
         //TODO: GET DATA FROM API
         api.getMenuItems().then((items) => {
-            console.log(items);
-            
-            // var d = JSON.parse(items);
-            // console.log(d);
-            
+
             menuItems.push(...items);
 
             // PUSH STATIC MODULES TOO
+            menuItems.push({
+                slug: "war-heroes/",
+                title: "War Heroes"
+            });
             menuItems.push({
                 slug: "media/",
                 title: "WWI Media"
