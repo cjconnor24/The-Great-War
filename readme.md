@@ -4,10 +4,11 @@ This application was developed as part of a University module on Client Side Web
 
 ## YouTube Walkthrough
 
+[1]: https://www.youtube.com/watch?v=DpvPUjKfrx8
+
 You can [view a walkthrough][1] of the application on YouTube by clicking the link below.
 
-![YouTube Walkthrough](youtube.jpg)[1]
-[1]: https://www.youtube.com/watch?v=DpvPUjKfrx8
+[![YouTube Walkthrough](youtube.jpg)][1]
 
 
 # Setup
